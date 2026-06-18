@@ -1,0 +1,1993 @@
+{
+  "source": "3、北京兴华PPT模版.pptx",
+  "total_slides": 121,
+  "images_count": 17,
+  "tables_count": 10,
+  "slides": [
+    {
+      "slide": 1,
+      "layout": "空白",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_001.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用格式"
+      ]
+    },
+    {
+      "slide": 2,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_002.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "编制PPT建议",
+        "标题数字等都可以通过点击和重新输入进行更改，顶部“开始”面板中可以对字体、字号、颜色、行距等进行修改。建议正文16号字，1.3倍字间距。标题数字等都可以通过点击和重新输入进行更改，顶部“开始”面板中可以对字体、字号、颜色、行距等进行修改。",
+        "统一颜色",
+        "统一字体",
+        "统一行距"
+      ]
+    },
+    {
+      "slide": 3,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_003.png",
+      "images": [
+        "images/slide_003_img_01.png"
+      ],
+      "tables": [],
+      "texts": [
+        "小标题",
+        "标题数字等都可以通过点击和重新输入进行更改，顶部“开始”面板中可以对字体、字号、颜色、行距等进行修改。",
+        "基本情况"
+      ]
+    },
+    {
+      "slide": 4,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_004.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "发展历程",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "标题数字等都可以通过点击和重新输入进行更改，顶部“开始”面板中可以对字体、字号、颜色、行距等进行修改。建议正文8-10号字，1.3倍字间距。",
+        "点击此处添加标题",
+        "标题数字等都可以通过点击和重新输入进行更改，顶部“开始”面板中可以对字体、字号、颜色、行距等进行修改。1.3倍字间距。"
+      ]
+    },
+    {
+      "slide": 5,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_005.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "OPTION"
+      ]
+    },
+    {
+      "slide": 6,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_006.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "按兴华模版修改，字母代表北京兴华",
+        "您的标题"
+      ]
+    },
+    {
+      "slide": 7,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_007.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "B",
+        "点击此处添加文本",
+        "按兴华模版修改，字母代表北京兴华。多学一个技能，就少一个求人的理由。",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 8,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_008.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "点击此处添加文本",
+        "按兴华模版修改，字母代表北京兴华。多学一个技能，就少一个求人的理由。"
+      ]
+    },
+    {
+      "slide": 9,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_009.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "按兴华模版修改，字母代表北京兴华。\n一不小心，就学会PPT，快来加入我们。"
+      ]
+    },
+    {
+      "slide": 10,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_010.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "按兴华模版修改，字母代表北京兴华",
+        "B",
+        "J",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 11,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_011.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "按兴华模版修改，字母代表北京兴华。\n一不小心，就学会PPT，快来加入我们。",
+        "B",
+        "J",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 12,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_012.png",
+      "images": [
+        "images/slide_012_img_02.png"
+      ],
+      "tables": [],
+      "texts": [
+        "J",
+        "请输入文本内容请输入文本内容请输入文本内容",
+        "H",
+        "X",
+        "B",
+        "按兴华模版修改，字母代表北京兴华。"
+      ]
+    },
+    {
+      "slide": 13,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_013.png",
+      "images": [
+        "images/slide_013_img_03.png"
+      ],
+      "tables": [],
+      "texts": [
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小"
+      ]
+    },
+    {
+      "slide": 14,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_014.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "单击此处编辑您要的内容，建议您在展示时采用微软雅黑字体，本模版所有图形线条及其相应素材均可自由编辑、改色、替换",
+        "单击编辑标题",
+        "B",
+        "J",
+        "X",
+        "H",
+        "优势",
+        "劣势",
+        "机会",
+        "威胁"
+      ]
+    },
+    {
+      "slide": 15,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_015.png",
+      "images": [
+        "images/slide_015_img_04.png"
+      ],
+      "tables": [],
+      "texts": [
+        "20%",
+        "B",
+        "X",
+        "H",
+        "J",
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小"
+      ]
+    },
+    {
+      "slide": 16,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_016.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "B",
+        "J",
+        "H",
+        "X",
+        "单击编辑主体",
+        "单击此处编辑内容，建议微软雅黑字体，"
+      ]
+    },
+    {
+      "slide": 17,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_017.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "x",
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "B",
+        "J",
+        "H"
+      ]
+    },
+    {
+      "slide": 18,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_018.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "B",
+        "X",
+        "H",
+        "J",
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小"
+      ]
+    },
+    {
+      "slide": 19,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_019.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "优势",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "劣势",
+        "机会",
+        "威胁"
+      ]
+    },
+    {
+      "slide": 20,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_020.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "关键词",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小"
+      ]
+    },
+    {
+      "slide": 21,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_021.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 22,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_022.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "B",
+        "J",
+        "H",
+        "X"
+      ]
+    },
+    {
+      "slide": 23,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_023.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "单击此处编辑您要的内容，建议您在展示时采用微软雅黑字体，本模版所有图形线条及其相应素材均可自由编辑、改色、替换。更多使用说明和作品请详阅模版最末的使用手册。",
+        "单击编辑标题",
+        "B",
+        "J",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 24,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_024.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "关键词",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "B",
+        "J",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 25,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_025.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "B",
+        "关键词",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "J",
+        "X",
+        "H"
+      ]
+    },
+    {
+      "slide": 26,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_026.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "单击编辑标题",
+        "单击此处可编辑内容，根据您的需要自由拉伸文本框大小",
+        "J",
+        "H",
+        "X",
+        "B"
+      ]
+    },
+    {
+      "slide": 27,
+      "layout": "空白",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_027.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "图示库（根据需要选取）"
+      ]
+    },
+    {
+      "slide": 28,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_028.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "字体，英文： Arial，中文： 微软雅黑；行距：正文 1.3   颜色：兴华红+万能灰"
+      ]
+    },
+    {
+      "slide": 29,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_029.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "点击编辑标题",
+        "点击重新输入进行更改，字号、颜色、行距等按兴华模版修改。",
+        "点击此处添加标题"
+      ]
+    },
+    {
+      "slide": 30,
+      "layout": "正文页2",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_030.png",
+      "images": [
+        "images/slide_030_img_05.png",
+        "images/slide_030_img_06.png",
+        "images/slide_030_img_07.png"
+      ],
+      "tables": [],
+      "texts": [
+        "未来计划",
+        "点击输入您的具体内容，用简洁的语言文字进行阐述",
+        "添加标题"
+      ]
+    },
+    {
+      "slide": 31,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_031.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "OPTION 02",
+        "OPTION 01",
+        "OPTION 03",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 32,
+      "layout": "正文页2",
+      "tags": [],
+      "render": "renders/slide_032.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 33,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_033.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 34,
+      "layout": "正文页2",
+      "tags": [],
+      "render": "renders/slide_034.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 35,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_035.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 36,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_036.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Step 01\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Step 02\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Step 03\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Step 04\nLorem ipsum dolor sit amet, consectetur adipiscing elit."
+      ]
+    },
+    {
+      "slide": 37,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_037.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Enter your subhead line here",
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 38,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_038.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Enter your subhead line here",
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "18%",
+        "25%",
+        "50%",
+        "65%"
+      ]
+    },
+    {
+      "slide": 39,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_039.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Enter your subhead line here",
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 40,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_040.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Enter your subhead line here",
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "01",
+        "02",
+        "03",
+        "04"
+      ]
+    },
+    {
+      "slide": 41,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_041.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "Enter your subhead line here",
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 42,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_042.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 43,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_043.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "1",
+        "2",
+        "3",
+        "4",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 44,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_044.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "按照兴华模版更换字体、颜色、行距，行距1.3",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 45,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_045.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换",
+        "OPTION 01",
+        "OPTION 04",
+        "OPTION 02",
+        "OPTION 03"
+      ]
+    },
+    {
+      "slide": 46,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_046.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "1",
+        "2",
+        "5",
+        "3",
+        "4",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 47,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_047.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 48,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_048.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "01",
+        "02",
+        "03",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "04",
+        "OPTION 01",
+        "OPTION 03",
+        "OPTION 04"
+      ]
+    },
+    {
+      "slide": 49,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_049.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 50,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_050.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "OPTION 01",
+        "OPTION 04",
+        "OPTION 02",
+        "OPTION 03"
+      ]
+    },
+    {
+      "slide": 51,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_051.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "OPTION 01",
+        "OPTION 03",
+        "OPTION 04"
+      ]
+    },
+    {
+      "slide": 52,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_052.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 53,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_053.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "01",
+        "40页可视化关系图表"
+      ]
+    },
+    {
+      "slide": 54,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_054.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 55,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_055.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "40%",
+        "50%",
+        "70%"
+      ]
+    },
+    {
+      "slide": 56,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_056.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 57,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_057.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 58,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_058.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 59,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_059.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 This text is\u000b fully editable."
+      ]
+    },
+    {
+      "slide": 60,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_060.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "40%",
+        "50%",
+        "70%",
+        "60%"
+      ]
+    },
+    {
+      "slide": 61,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_061.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 62,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_062.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "OPTION 01",
+        "KEY POINT",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "40%",
+        "50%",
+        "70%",
+        "90%"
+      ]
+    },
+    {
+      "slide": 63,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_063.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "40%",
+        "10%",
+        "50%",
+        "60%",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 64,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_064.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "40页可视化关系图表",
+        "标题内容更换\u000b\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 65,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_065.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "40%",
+        "10%",
+        "50%",
+        "60%",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "标题内容更换"
+      ]
+    },
+    {
+      "slide": 66,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_066.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换"
+      ]
+    },
+    {
+      "slide": 67,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_067.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "04",
+        "02",
+        "06",
+        "03",
+        "05",
+        "01",
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 .",
+        "RED  (Xinghua LOGO)\nR:192 G:0 B:0",
+        "Green\n R:16 G:207 B:155"
+      ]
+    },
+    {
+      "slide": 68,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_068.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 69,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_069.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "OPTION 01",
+        "OPTION 04",
+        "OPTION 02",
+        "OPTION 03",
+        "OPTION 05",
+        "OPTION 06",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3"
+      ]
+    },
+    {
+      "slide": 70,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_070.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "80%",
+        "70%",
+        "60%",
+        "50%",
+        "10%",
+        "20%",
+        "30%",
+        "40%",
+        "标题内容更换\u000bThis is a sample text. You simply add your own text here."
+      ]
+    },
+    {
+      "slide": 71,
+      "layout": "正文页2",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_071.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "常用浅色图表",
+        "标题内容更换\u000b按照兴华模版更换字体、颜色、行距，行距1.3 ."
+      ]
+    },
+    {
+      "slide": 72,
+      "layout": "空白",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_072.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "表格（根据需要选用）"
+      ]
+    },
+    {
+      "slide": 73,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_073.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_073_table_01.csv",
+          "json": "tables/slide_073_table_01.json"
+        }
+      ],
+      "texts": [
+        "表格模版"
+      ]
+    },
+    {
+      "slide": 74,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_074.png",
+      "images": [
+        "images/slide_074_img_08.png"
+      ],
+      "tables": [
+        {
+          "csv": "tables/slide_074_table_01.csv",
+          "json": "tables/slide_074_table_01.json"
+        }
+      ],
+      "texts": [
+        "合伙人管理"
+      ]
+    },
+    {
+      "slide": 75,
+      "layout": "正文页1",
+      "tags": [
+        "image",
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_075.png",
+      "images": [
+        "images/slide_075_img_09.png"
+      ],
+      "tables": [
+        {
+          "csv": "tables/slide_075_table_01.csv",
+          "json": "tables/slide_075_table_01.json"
+        }
+      ],
+      "texts": [
+        "业务执行制度"
+      ]
+    },
+    {
+      "slide": 76,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_076.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_076_table_01.csv",
+          "json": "tables/slide_076_table_01.json"
+        }
+      ],
+      "texts": [
+        "点击添加文字",
+        "任务完成"
+      ]
+    },
+    {
+      "slide": 77,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_077.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_077_table_01.csv",
+          "json": "tables/slide_077_table_01.json"
+        }
+      ],
+      "texts": [
+        "任务进程表"
+      ]
+    },
+    {
+      "slide": 78,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_078.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_078_table_01.csv",
+          "json": "tables/slide_078_table_01.json"
+        }
+      ],
+      "texts": [
+        "任务进程"
+      ]
+    },
+    {
+      "slide": 79,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_079.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_079_table_01.csv",
+          "json": "tables/slide_079_table_01.json"
+        }
+      ],
+      "texts": [
+        "任务进程"
+      ]
+    },
+    {
+      "slide": 80,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_080.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_080_table_01.csv",
+          "json": "tables/slide_080_table_01.json"
+        }
+      ],
+      "texts": [
+        "任务进程"
+      ]
+    },
+    {
+      "slide": 81,
+      "layout": "正文页1",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_081.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_081_table_01.csv",
+          "json": "tables/slide_081_table_01.json"
+        }
+      ],
+      "texts": [
+        "时间计划"
+      ]
+    },
+    {
+      "slide": 82,
+      "layout": "空白",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_082.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "智能图表"
+      ]
+    },
+    {
+      "slide": 83,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_083.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 84,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_084.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 85,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_085.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 86,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_086.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "请在插入菜单—页眉和页脚中修改此文本"
+      ]
+    },
+    {
+      "slide": 87,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_087.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 88,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_088.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 89,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_089.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 90,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_090.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 91,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_091.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 92,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_092.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 93,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_093.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 94,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_094.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 95,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_095.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "管理总部人员分布表"
+      ]
+    },
+    {
+      "slide": 96,
+      "layout": "正文页1",
+      "tags": [],
+      "render": "renders/slide_096.png",
+      "images": [],
+      "tables": [],
+      "texts": []
+    },
+    {
+      "slide": 97,
+      "layout": "空白",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_097.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "纯文字模版"
+      ]
+    },
+    {
+      "slide": 98,
+      "layout": "1_仅标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_098.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "前言",
+        "中共中央办公厅 国务院办公厅印发《党政主要领导干部和国有企事业单位主要领导人员经济责任审计规定》以下简称《2019版规定》，2019年7月7日施行。\n        深入贯彻习近平新时代中国特色社会主义思想和党的十九大精神，坚持党对审计工作的集中统一领导，聚焦领导干部经济责任，既强化对权力运行的制约和监督，又贯彻“三个区分开来”要求，对于加强领导干部管理监督，促进领导干部履职尽责、担当作为，确保党中央令行禁止具有重要意义。"
+      ]
+    },
+    {
+      "slide": 99,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_099.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "什么是经济责任",
+        "经济责任，是指领导干部在任职期间，对其管辖范围内贯彻执行党和国家经济方针政策、决策部署，推动经济和社会事业发展，管理公共资金、国有资产、国有资源，防控重大经济风险等有关经济活动应当履行的职责。",
+        "经济责任定义"
+      ]
+    },
+    {
+      "slide": 100,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_100.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "什么是经济责任审计",
+        "经济责任审计定义",
+        "经济责任审计指对单位或企业主要或一般领导人员在任期内履行经济责任情况进行全面审计、确认和评价的一种审计类型，是审计监督的重要手段。它对评价单位领导者落实方针政策情况、工作绩效情况、规范领导者的职能和促进科学规范化管理起着重要促进作用。",
+        "审计署、国资委的定义：经济责任审计是对领导干部和领导人员经济责任履行情况进行监督、评价和鉴证的行为（活动）"
+      ]
+    },
+    {
+      "slide": 101,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_101.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "经济责任审计对象",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ]
+    },
+    {
+      "slide": 102,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_102.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "审计内容",
+        "财务基础审计内容"
+      ]
+    },
+    {
+      "slide": 103,
+      "layout": "2_节标题",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_103.png",
+      "images": [
+        "images/slide_103_img_10.png"
+      ],
+      "tables": [],
+      "texts": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "经济责任审计内容",
+        "企业财务的真实合法效益情况，风险管控情况，境外资产管理情况，生态环境保护情况；"
+      ]
+    },
+    {
+      "slide": 104,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_104.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "经济责任审计的法规、规章",
+        "01",
+        "国资委令第7号-中央企业经济责任审计管理暂行办法-2004年",
+        "02",
+        "国资发评价【2006】7号-中央企业经济责任审计实施细则",
+        "03",
+        "国资委令第14号-中央企业综合绩效评价管理暂行办法-2006年",
+        "04",
+        "7部委 党政主要领导干部和国有企业领导人员经济责任审计规定实施细则-2014年",
+        "05"
+      ]
+    },
+    {
+      "slide": 105,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_105.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "经济责任审计需提供的资料"
+      ]
+    },
+    {
+      "slide": 106,
+      "layout": "2_节标题",
+      "tags": [
+        "table",
+        "text"
+      ],
+      "render": "renders/slide_106.png",
+      "images": [],
+      "tables": [
+        {
+          "csv": "tables/slide_106_table_01.csv",
+          "json": "tables/slide_106_table_01.json"
+        }
+      ],
+      "texts": [
+        "3-1 经济责任审计要点"
+      ]
+    },
+    {
+      "slide": 107,
+      "layout": "2_节标题",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_107.png",
+      "images": [
+        "images/slide_107_img_11.jpg"
+      ],
+      "tables": [],
+      "texts": [
+        "1、贯彻落实上级重大经济工作方针政策、决策部署情况",
+        "1．围绕上级制定的重大经济工作方针政策和决策部署，确定审计重点内容和对象，审查被审计单位对重大政策措施的贯彻落实情况。（实务中常见的是被审计单位无实质性改变举措。）",
+        "2．以资金、项目、政策和重大改革任务推进情况为重点，关注被审计单位是否制定具体的落实措施，相关落实措施的具体内容及其分解、组织落实情况、执行进度以及取得的实际效果等。（实务中常见的是被审计单位以会议落实会议，未分解目标任务、无实质性举措。）",
+        "3．审查上级重大政策举措是否落实、预定目标和效果是否按照预定的计划完成？（实务中常见的是仅列示差异，对好的经验未总结，对未完成的未深入分析。）",
+        "4．查找影响重大政策措施落地的关键环节，分析政策措施落实过程中面临的困难，及时发现有令不行、有禁不止的行为及出现的新情况、新问题，分析原因并提出建议，促进上级各项重大政策措施有效实施和发挥作用。（实务中关注禁止性行为的违反情况。）",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "slide": 108,
+      "layout": "2_节标题",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_108.png",
+      "images": [
+        "images/slide_108_img_15.jpg"
+      ],
+      "tables": [],
+      "texts": [
+        "10、披露事项",
+        "1．了解任期前遗留问题、重大未决诉讼及其他对企业有重大影响事项，根据重要程度进行披露。\n2．被审计单位i领导人员有责任处理前任遗留问题，对现任领导人员已采取积极有效措施处理，但因各种客观因素未能解决的任前重大遗留问题，在此做披露处理。\n3．实务中常见的“新官不理旧账”、采取消极态度不加以处理的，应作为任期内问题并界定任期责任予以反映。",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "1"
+      ]
+    },
+    {
+      "slide": 109,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_109.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "3-2、遵循五项原则",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "遵循五项原则",
+        "经济责任审计结论关系到领导者的工作业绩评价和人事考核，在开展审计时很可能受到利益相关方的影响。审计部门应坚持独立性原则，排除外来因素的干扰，秉公尽责，不徇私情，独立行使审计监督权；同时对他人反映的问题应持谨慎和批判的态度，依据事实和专业判断去伪存真，防止偏听偏信，影响审计的公正性。",
+        "独立性和客观性是审计的生命线。尽管经济责任审计是对人的评价，但是在审计中也用事实说话，以国家法律或企业法规为准绳，审计证据充分，审计评价公正。对查出的问题要证据确凿，经得起核实，反映在审计报告上要做到件件有事实、句句有据可查，充分体现审计工作的独立和客观，审计评价要有说服力。",
+        "审计人员要具有联系能力，在经济责任审计中要把对被审计领导者与当时的经济环境、政策背景、实际工作所在地域、任期长短、任前和任中的政策变化等因素联系起来，不能孤立地看待问题，既要把成绩与个人努力联系起来，又要与当时的历史条件联系起来。"
+      ]
+    },
+    {
+      "slide": 110,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_110.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "较好执行国家的会计核算制度，会计业务处理基本正确",
+        "严格执行国家的会计核算制度，会计业务处理正确",
+        "没有按国家会计核算制度规定处理会计业务",
+        "存在做假账、账外账等违反会计核算规定的行为",
+        "基本执行国家财务制度规定",
+        "严格执行国家财务制度规定，审计未发现违反国家相关规定的行为",
+        "存在违反国家财务制度规定的行为，但数额不大、性质不够严重",
+        "存在数额较大、性质严重的违反国家财政财务制度规定的行为",
+        "经济责任审计评价"
+      ]
+    },
+    {
+      "slide": 111,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_111.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "报告的编制应实事求是，不偏不倚地反映审计事项",
+        "0 1",
+        "0 2",
+        "0 3",
+        "0 4",
+        "0 5",
+        "0 6",
+        "经济责任审计报告原则",
+        "应及时编制，以便适时采取有效纠正措施",
+        "应按照规定的格式及内容编制，作到要素齐全，格式规范，不遗漏审计中发现的重大事项"
+      ]
+    },
+    {
+      "slide": 112,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_112.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "审计报告程序"
+      ]
+    },
+    {
+      "slide": 113,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_113.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "如何写好审计报告",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "客观性",
+        "相关性",
+        "明确性",
+        "稳健性"
+      ]
+    },
+    {
+      "slide": 114,
+      "layout": "2_节标题",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_114.png",
+      "images": [
+        "images/slide_114_img_19.jpg"
+      ],
+      "tables": [],
+      "texts": [
+        "服务响应",
+        "提高政治站位\n服务中央企业",
+        "1",
+        "协同内审工作\n一切听从指挥",
+        "2",
+        "恪守职业道德\n坚持勤勉尽责",
+        "3"
+      ]
+    },
+    {
+      "slide": 115,
+      "layout": "正文页1",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_115.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "服务响应"
+      ]
+    },
+    {
+      "slide": 116,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_116.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "审计重点",
+        "招投标方面\n招投标的合法合规性，是否符合国家及内部规定，是否存在严重违反招投标法律法规的问题。",
+        "重点2",
+        "重点3",
+        "资金使用方面\n如工程施工费、用地补偿费等是否真实等。",
+        "重点1",
+        "项目预算方面\n 检查是否存在项目预算、执行及考核存在异常的项目",
+        "针对上勘设研院的特点，我们将关注以下重点"
+      ]
+    },
+    {
+      "slide": 117,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_117.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "难点应对",
+        "审计主体多、 审计期间跨度较长、收集资料难度大，审计时间紧、任务重，对审计人员综合能力要求高。",
+        "应对措施",
+        "入场前提前发放资料清单，各分子公司专人对接，及时汇总资料收集情况，保证及时拿到资料。",
+        "1提前下发清单",
+        "快速拟定访谈人名单，除对当事人、被审计单位经营班子及主要部门负责人进行访谈外，对基础员工也进行访谈。所有被访谈人员提前预约。",
+        "2快速预约访谈",
+        "在项目进场前对项目人员进行项目情况介绍，结合被审计单位特点将审计过程中需要关注的重点内容进行重点培训。",
+        "3统一重点培训",
+        "项目组配备具有多年审计实践经验的审计人员，项目负责人及项目骨干均参与过经济责任审计，能够确保工作成果的实现。"
+      ]
+    },
+    {
+      "slide": 118,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_118.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "难点应对",
+        "面对境外资产项目多、检查事项任务重、资产风险大、境外现场情况复杂、项目管控难度大等难点，我们的应对措施如下：",
+        "应对措施",
+        "开展审前调查，并根据委托方要求，制定具有针对性和可操作性的审计工作方案，并编制配套的审计工作底稿、审计事项确认单、取证单，并规范底稿、确认单、原始证据的索引编号。",
+        "5 细化工作方案",
+        "提前让项目单位根据审计组的模板，提供境外工程项目持平与亏损统计表、建造合同统计表、境外投资项目情况表和境外工程施工项目情况表等。",
+        "6 全面了解境外资产",
+        "项目组成员提前学习境外资产相关法规：\n8个境外资产总体管控文件，13个境外资产投资并购管理文件，4个境外工程承包及劳务管理文件，6个境外资金管控文件等。",
+        "7 学习监管法规",
+        "外现场检查需要做好保密工作，出境前应进行政治安全教育培训，保证电脑数据的安全，最好使用专用电脑开展境外项目现场检查。"
+      ]
+    },
+    {
+      "slide": 119,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_119.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "工作业绩"
+      ]
+    },
+    {
+      "slide": 120,
+      "layout": "2_节标题",
+      "tags": [
+        "image",
+        "text"
+      ],
+      "render": "renders/slide_120.png",
+      "images": [
+        "images/slide_120_img_20.png",
+        "images/slide_120_img_21.png",
+        "images/slide_120_img_22.png",
+        "images/slide_120_img_23.png"
+      ],
+      "tables": [],
+      "texts": [
+        "亮点经验",
+        "点击输入您的具体内容用简洁的语言文字进行阐述，精准的词汇表达胜过长篇大论的文字表述",
+        "添加标题",
+        "01",
+        "02",
+        "04",
+        "03"
+      ]
+    },
+    {
+      "slide": 121,
+      "layout": "2_节标题",
+      "tags": [
+        "text"
+      ],
+      "render": "renders/slide_121.png",
+      "images": [],
+      "tables": [],
+      "texts": [
+        "问题分析",
+        "添加标题",
+        "点击输入您的具体内容，用简洁的语言文字进行阐述，精准的词汇表达胜过长篇大论的文字",
+        "01",
+        "02",
+        "03",
+        "04"
+      ]
+    }
+  ]
+}
