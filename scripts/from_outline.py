@@ -17,8 +17,8 @@ Usage:
 
 版式自动选择规则（见 SKILL.md §6.1）:
     H1 (1 个)              → 主题-封面
-    第一个 H2 之后插入     → 主题-目录页（可选：out_no_toc 关闭）
-    每个 H2                → 标题页-空白（章节封面）
+    第一个 H2 之前插入     → 主题-目录页（可选：out_no_toc 关闭）
+    每个 H2                → 标题页-空白（章节封面，可用 --no-chapter-covers 改为内容页）
     每个 H3                → 文字模板1（默认）/ > layout: 覆盖
     末尾                    → 主题-封底页（可选：out_no_closing 关闭）
 
@@ -64,22 +64,38 @@ DIRECTIVE_RE = re.compile(r"^>\s*(\w+):\s*(.+?)\s*$")
 class PageSpec:
     """One page = one H3 (or an H2 chapter cover, or the cover/closing)."""
 
-    def __init__(self, kind: str, title: str, layout: str, bullets: list[str], note: str = ""):
+    def __init__(
+        self,
+        kind: str,
+        title: str,
+        layout: str,
+        bullets: list[str],
+        note: str = "",
+        toc_page_numbers: list[str] | None = None,
+    ):
         self.kind = kind  # 'cover' | 'toc' | 'chapter' | 'content' | 'closing'
         self.title = title
         self.layout = layout
         self.bullets = bullets
         self.note = note
+        self.toc_page_numbers = toc_page_numbers or []
 
     def __repr__(self) -> str:
         return f"PageSpec({self.kind}, {self.title!r}, layout={self.layout!r}, n={len(self.bullets)})"
 
 
-def parse_outline(text: str, *, add_toc: bool = True, add_closing: bool = True) -> list[PageSpec]:
+def parse_outline(
+    text: str,
+    *,
+    add_toc: bool = True,
+    add_closing: bool = True,
+    no_chapter_covers: bool = False,
+) -> list[PageSpec]:
     """Parse a markdown outline into a list of PageSpec objects."""
     pages: list[PageSpec] = []
     current_chapter: str | None = None
     current: PageSpec | None = None
+    h2_titles: list[str] = []
     cover_added = False
 
     def flush() -> None:
@@ -109,12 +125,22 @@ def parse_outline(text: str, *, add_toc: bool = True, add_closing: bool = True) 
         if m:
             flush()
             current_chapter = m.group(1).strip()
-            current = PageSpec(
-                kind="chapter",
-                title=current_chapter,
-                layout="标题页-空白",
-                bullets=[],
-            )
+            h2_titles.append(current_chapter)
+            if no_chapter_covers:
+                # H2 acts as a content page; layout can be overridden with > layout:
+                current = PageSpec(
+                    kind="content",
+                    title=current_chapter,
+                    layout=DEFAULT_CONTENT_LAYOUT,
+                    bullets=[],
+                )
+            else:
+                current = PageSpec(
+                    kind="chapter",
+                    title=current_chapter,
+                    layout="标题页-空白",
+                    bullets=[],
+                )
             continue
 
         m = H3_RE.match(line)
@@ -145,14 +171,22 @@ def parse_outline(text: str, *, add_toc: bool = True, add_closing: bool = True) 
     flush()
 
     # 装饰：插入目录页 + 封底页
-    if add_toc and any(p.kind == "chapter" for p in pages):
-        # 收集所有 H2 章节标题作为目录项
-        chapter_titles = [p.title for p in pages if p.kind == "chapter"]
+    if add_toc and h2_titles:
+        # 收集所有 H2 标题作为目录项（无论它们被渲染成章节页还是内容页）
+        chapter_titles = h2_titles
+        # 计算每个 H2 在最终 deck 中的实际页码（封面=1，目录=2）
+        # 目前 pages 还未插入目录/封底，但 H2 的相对顺序已确定
+        toc_page_numbers = []
+        for title in chapter_titles:
+            # 找到该 H2 对应的 page 在 pages 中的索引；+1 为页码，+2 为加上封面和目录
+            idx = next((j for j, p in enumerate(pages) if p.title == title), len(pages))
+            toc_page_numbers.append(str(idx + 2))
         toc = PageSpec(
             kind="toc",
             title="目录",
             layout="主题-目录页",
             bullets=chapter_titles,
+            toc_page_numbers=toc_page_numbers,
         )
         # 插到封面之后、第一章之前
         insert_at = 1 if pages and pages[0].kind == "cover" else 0
@@ -364,12 +398,16 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
         # 模板实际只有 4 个章节位置(12,21,23,25),超过 4 章节的需要换版式
         for i, idx in enumerate(mp["item_idxs"]):
             text = spec.bullets[i] if i < len(spec.bullets) else ""
-            set_placeholder_text(find_placeholder(slide, idx), text, size_pt=18, bold=False)
-        # 4 个页码占位符:自动算"第几页"(只填 N,不写"01"格式)
-        # 简单起见:填 1, 2, 3, ...(用户在 PPT 里改成实际页码)
+            set_placeholder_text(find_placeholder(slide, idx), text, size_pt=16, bold=False)
+        # 4 个页码占位符:优先使用预计算页码,否则兜底 1,2,3,...
         for i, idx in enumerate(mp["page_idxs"]):
             if i < len(spec.bullets):
-                set_placeholder_text(find_placeholder(slide, idx), str(i + 1), size_pt=18, bold=False)
+                page_num = (
+                    spec.toc_page_numbers[i]
+                    if i < len(spec.toc_page_numbers)
+                    else str(i + 1)
+                )
+                set_placeholder_text(find_placeholder(slide, idx), page_num, size_pt=16, bold=False)
 
     elif spec.kind == "chapter":
         if spec.layout == "1_主题-过渡页":
@@ -531,6 +569,13 @@ def main() -> int:
     parser.add_argument("template", nargs="?", default=DEFAULT_TEMPLATE, help="template .pptx path")
     parser.add_argument("--no-toc", dest="add_toc", action="store_false")
     parser.add_argument("--no-closing", dest="add_closing", action="store_false")
+    parser.add_argument(
+        "--no-chapter-covers",
+        dest="no_chapter_covers",
+        action="store_true",
+        help="Treat H2 headings as content pages instead of chapter title pages "
+        "(useful for compact decks with cover+TOC+content+closing).",
+    )
     args = parser.parse_args()
 
     outline_path = Path(args.outline)
@@ -544,7 +589,12 @@ def main() -> int:
         return 1
 
     text = outline_path.read_text(encoding="utf-8")
-    pages = parse_outline(text, add_toc=args.add_toc, add_closing=args.add_closing)
+    pages = parse_outline(
+        text,
+        add_toc=args.add_toc,
+        add_closing=args.add_closing,
+        no_chapter_covers=args.no_chapter_covers,
+    )
 
     # 关键步骤：复制模板到输出路径，再从输出路径打开。
     # 这样原始模板不被污染，输出 .pptx 自带"模板主题 + 我们写的新页"。

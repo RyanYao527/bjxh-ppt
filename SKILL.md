@@ -40,6 +40,8 @@ python scripts/qa.py my_output.pptx
 > note: 演讲者备注                  → 加备注
 ```
 
+> **紧凑模式**：如果希望 `## ` 直接作为内容页（不要章节封面页），例如 `封面 + 目录 + 3页内容 + 封底 = 6 页`，可在生成时加 `--no-chapter-covers`。此时 H2 标题同时作为目录项和正文页标题，H2 下需要直接带 bullet。
+
 详见 `examples/audit_demo.md` 完整样例。
 
 **典型陷阱 & 解法：**
@@ -52,6 +54,8 @@ python scripts/qa.py my_output.pptx
 | "模板里找不到 `文字模板26`" | 模板实际只有 25 个文字模板,见 `template_spec.json` |
 | "封面太大/太小" | 字号 36pt 写死,要调整就 `Pt(40)` 等,保留微软雅黑 |
 | "忘了删模板里的 8 页样例" | from_outline.py 已自动清空模板原页,无需处理 |
+
+| 想做 6 页以内的紧凑汇报 | 用 `--no-chapter-covers`，让 H2 直接当内容页，目录仍会自动生成 |
 
 **目录速查：**
 
@@ -327,7 +331,7 @@ if spec.kind == "cover":
 |---|---|---|
 | `dump_template_spec.py` | 读模板，输出 JSON 规范（**一次性**） | `python dump_template_spec.py <template.pptx> <out.json>` |
 | `from_template.py` | 从模板复制出干净 .pptx（按版式清单选页） | `python from_template.py <template.pptx> <out.pptx> <layout1,layout2,...>` |
-| `from_outline.py` | **MD 大纲 → .pptx**（核心） | `python from_outline.py outline.md out.pptx [template.pptx]` |
+| `from_outline.py` | **MD 大纲 → .pptx**（核心） | `python from_outline.py outline.md out.pptx [template.pptx]`；紧凑模式加 `--no-chapter-covers` |
 | `qa.py` | 自检：字体/字号/颜色 None、版式重复、BJH 残留、提示文、占位符空 | `python qa.py <file.pptx>` |
 | `preview_html.py` | **浏览器核验**：把每页 idx/位置/字号/溢出估算渲成 HTML | `python preview_html.py <file.pptx>` |
 
