@@ -1,0 +1,9 @@
+# Normalize text files to LF line endings on checkout
+* text=auto eol=lf
+
+# Binary files should not be modified
+*.pptx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary

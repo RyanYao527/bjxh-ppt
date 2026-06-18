@@ -127,16 +127,18 @@ assert prs.slide_width == 12192000 and prs.slide_height == 6858000
 
 ### 4.1 主题色引用
 
-| 主题色角色 | 典型用途 | python-pptx |
-|---|---|---|
-| `ACCENT_1` (5) | 主色（兴华红）— 标题、重点色块 | `MSD_THEME_COLOR_INDEX.ACCENT_1` |
-| `ACCENT_2` (6) | 辅助色一 | `MSD_THEME_COLOR_INDEX.ACCENT_2` |
-| `ACCENT_3` (7) | 辅助色二 | `MSD_THEME_COLOR_INDEX.ACCENT_3` |
-| `TEXT_1` (13) | 正文文字 | `MSD_THEME_COLOR_INDEX.TEXT_1` |
-| `TEXT_2` (15) | 辅助文字 | `MSD_THEME_COLOR_INDEX.TEXT_2` |
-| `BACKGROUND_1` (14) | 浅底/反白 | `MSD_THEME_COLOR_INDEX.BACKGROUND_1` |
+| 主题色角色 | 典型用途 | 实测十六进制 | python-pptx |
+|---|---|---|---|
+| `ACCENT_1` (5) | 辅助灰一 | `#E6E6E5` | `MSO_THEME_COLOR_INDEX.ACCENT_1` |
+| `ACCENT_2` (6) | 辅助灰二 | `#ABABAB` | `MSO_THEME_COLOR_INDEX.ACCENT_2` |
+| `ACCENT_3` (7) | 主色（兴华红）— 标题、重点色块 | `#C81428` | `MSO_THEME_COLOR_INDEX.ACCENT_3` |
+| `ACCENT_4` (8) | 深灰 | `#3E3A39` | `MSO_THEME_COLOR_INDEX.ACCENT_4` |
+| `ACCENT_5` (9) | 橙色 | `#ED9027` | `MSO_THEME_COLOR_INDEX.ACCENT_5` |
+| `TEXT_1` (13) | 正文文字 | `#3E3A39` | `MSO_THEME_COLOR_INDEX.TEXT_1` |
+| `TEXT_2` (15) | 辅助文字 | — | `MSO_THEME_COLOR_INDEX.TEXT_2` |
+| `BACKGROUND_1` (14) | 浅底/反白 | `#FFFFFF` | `MSO_THEME_COLOR_INDEX.BACKGROUND_1` |
 
-> **注意**：`MSD_THEME_COLOR_INDEX` 的真实导入路径是 `pptx.enum.dml.MSO_THEME_COLOR_INDEX`。
+> **注意**：`MSO_THEME_COLOR_INDEX` 的导入路径是 `pptx.enum.dml.MSO_THEME_COLOR_INDEX`。旧版文档中的 `MSD_THEME_COLOR_INDEX` 为笔误，已更正。
 
 ### 4.2 硬编码 RGB 兜底
 
@@ -193,7 +195,7 @@ assert prs.slide_width == 12192000 and prs.slide_height == 6858000
 
 ### 6.2 封底（自定义版式）实测规范
 
-> **数据来源**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx` 第 111 号版式（**自定义版式**）+ 模板示例 slide8 的内联形状。2026-06-18 通过 `inspect_layout` + `render_template` 实测确认，2026-06-18 v3 修订（标题位置上移 + 联系方式字号 16pt）。
+> **数据来源**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx` 第 111 号版式（**自定义版式**）+ 模板示例 slide 7（1-based，即 0-based index 6）的内联形状。2026-06-18 通过 `inspect_layout` + `render_template` 实测确认，2026-06-18 v3 修订（标题位置上移 + 联系方式字号 16pt）。
 
 **layout 自带（不需代码补）**：
 
@@ -205,7 +207,7 @@ assert prs.slide_width == 12192000 and prs.slide_height == 6858000
 | 顶部装饰 | PICTURE（红白波浪） | (6.00, 0.00) | 7.33 × 3.01 | layout 自带 |
 | 底部装饰 | PICTURE（红色波浪） | (0, ~6.5) | 13.33 × 1.0 | layout 自带 |
 
-**slide 层必须补（模板示例 slide8 的内联形状,代码 add）**：
+**slide 层必须补（模板示例 slide 7 的内联形状,代码 add）**：
 
 | 元素 | 类型 | 位置(in) | 尺寸(in) | 说明 |
 |---|---|---|---|---|
@@ -388,4 +390,4 @@ if spec.kind == "cover":
 
 ---
 
-*版本 v1.0 · 2026-06-17 · 基于 2026 合伙人大会模板*
+*版本 v1.1 · 2026-06-18 · 基于 2026 合伙人大会模板 · 修正主题色与默认版式映射*

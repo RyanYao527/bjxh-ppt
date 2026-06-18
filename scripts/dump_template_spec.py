@@ -53,7 +53,7 @@ def main(template_path: str, output_path: str) -> None:
         )
 
     # 3) Aggregate layout name frequency across all slides (so we know which
-    #    layouts the template actually uses in its 165 demo pages)
+    #    layouts the template actually uses in its demo pages)
     used_layouts: Counter = Counter()
     slide_summaries = []
     for s_idx, slide in enumerate(prs.slides):

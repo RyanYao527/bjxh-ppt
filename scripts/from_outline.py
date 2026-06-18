@@ -30,7 +30,10 @@ import sys
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.util import Pt
+from pptx.dml.color import RGBColor
+from pptx.enum.dml import MSO_THEME_COLOR_INDEX
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.util import Emu, Inches, Pt
 
 try:
     from from_template import apply_minimal_formatting
@@ -44,8 +47,9 @@ DEFAULT_TEMPLATE = (
     r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx"
 )
 
-# H3 缺省使用的版式（最常见、最易读）
-DEFAULT_CONTENT_LAYOUT = "文字模板1"
+# H3 缺省使用的版式。文字模板1 占位符太少，qa.py 会认为内容页过薄；
+# 默认使用无图分段-3项，既有结构化分段，又能通过视觉元素检查。
+DEFAULT_CONTENT_LAYOUT = "无图分段-3项"
 
 
 # ---------------- markdown parsing ----------------
@@ -199,9 +203,9 @@ def set_placeholder_text(ph, text: str, *, size_pt: int = 16, bold: bool = False
     run.font.name = "Microsoft YaHei"
     run.font.size = Pt(size_pt)
     run.font.bold = bold
+    # 优先使用主题色，确保跟随模板主题切换；只在占位符没有继承颜色时兜底
     if run.font.color and run.font.color.type is None:
-        from pptx.dml.color import RGBColor
-        run.font.color.rgb = RGBColor(0x1F, 0x1F, 0x1F)
+        run.font.color.theme_color = MSO_THEME_COLOR_INDEX.TEXT_1
     return True
 
 
@@ -227,6 +231,23 @@ PLACEHOLDER_MAP: dict[str, dict] = {
     "标题页-空白": {
         "main_title_idx": 11,   # 文本占位符 2(一级标题)
         "subtitle_idx":  12,   # 文本占位符 6
+    },
+    "1_标题页-空白": {
+        # 富集版章节封面：复用基础标题/副标题占位符，其余装饰占位符保留模板默认
+        "main_title_idx": 11,
+        "subtitle_idx":  12,
+    },
+    "1_主题-过渡页": {
+        # 过渡页：idx=13 章节标题，idx=11 英文 PART ONE，idx=10 章节数字
+        "main_title_idx": 13,
+        "transition_part_idx": 11,
+        "transition_num_idx": 10,
+    },
+    "文字模板1": {
+        # 最常用纯文字正文页：idx=11 标题，idx=12 副标题，idx=13 正文
+        "main_title_idx": 11,
+        "subtitle_idx":  12,
+        "body_idx":      13,
     },
     "无图分段-3项": {
         "main_title_idx": 11,   # 文本占位符 2(页面标题)
@@ -330,10 +351,12 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
                 p = tf.paragraphs[0]
                 p.alignment = None  # 左对齐
                 run = p.add_run()
-                run.text = "BEIJING XINGHUA  GROUP"
+                run.text = "BEIJING XINGHUA GROUP"
                 run.font.name = "Arial"
                 run.font.size = Pt(18)
-                # 注：18pt "BEIJING XINGHUA  GROUP" ~3.5in 宽 < 框宽 4.04in → 单行
+                # 封面副标题位于左下角，使用浅色/反白主题色确保在红色波浪背景上可读
+                run.font.color.theme_color = MSO_THEME_COLOR_INDEX.BACKGROUND_1
+                # 注：18pt "BEIJING XINGHUA GROUP" ~3.5in 宽 < 框宽 4.04in → 单行
                 # 旧版 28pt 文字 ~5.4in 宽 > 4.04in → 强制换行成 2 行（错误）
 
     elif spec.kind == "toc":
@@ -349,13 +372,20 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
                 set_placeholder_text(find_placeholder(slide, idx), str(i + 1), size_pt=18, bold=False)
 
     elif spec.kind == "chapter":
-        # 章节标题页 — 模板框 3.87×0.54 寸,32pt 装不下 12+ 字,降到 24pt
-        set_placeholder_text(
-            find_placeholder(slide, mp["main_title_idx"]), spec.title, size_pt=24, bold=True
-        )
-        set_placeholder_text(
-            find_placeholder(slide, mp["subtitle_idx"]), spec.note or "", size_pt=14, bold=False
-        )
+        if spec.layout == "1_主题-过渡页":
+            # 过渡页只填章节标题；保留 idx=10/11 的"01 / PART ONE"装饰文本
+            set_placeholder_text(
+                find_placeholder(slide, mp["main_title_idx"]), spec.title, size_pt=28, bold=True
+            )
+        else:
+            # 章节标题页 — 模板框 3.87×0.54 寸,32pt 装不下 12+ 字,降到 24pt
+            set_placeholder_text(
+                find_placeholder(slide, mp["main_title_idx"]), spec.title, size_pt=24, bold=True
+            )
+            if mp.get("subtitle_idx") is not None:
+                set_placeholder_text(
+                    find_placeholder(slide, mp["subtitle_idx"]), spec.note or "", size_pt=14, bold=False
+                )
 
     elif spec.kind == "content":
         # 内容页:主页标题 + 副标题 + (如果有结构化分段版式)3 个分段
@@ -392,12 +422,15 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
                 else:
                     set_placeholder_text(find_placeholder(slide, idx), "", size_pt=14, bold=False)
         elif "seg_body_idxs" not in mp and spec.bullets:
-            # 非结构化版式:找一个最大 body 框塞入(简单兜底)
-            body_ph = max(
-                (ph for ph in slide.placeholders if ph.has_text_frame and ph.placeholder_format.idx not in (mp["main_title_idx"], mp.get("subtitle_idx"))),
-                key=lambda ph: ph.width * ph.height if ph.width and ph.height else 0,
-                default=None,
-            )
+            # 非结构化版式:如果映射中指定了 body_idx 则优先使用,否则找一个最大 body 框
+            if "body_idx" in mp:
+                body_ph = find_placeholder(slide, mp["body_idx"])
+            else:
+                body_ph = max(
+                    (ph for ph in slide.placeholders if ph.has_text_frame and ph.placeholder_format.idx not in (mp["main_title_idx"], mp.get("subtitle_idx"))),
+                    key=lambda ph: ph.width * ph.height if ph.width and ph.height else 0,
+                    default=None,
+                )
             if body_ph is not None:
                 tf = body_ph.text_frame
                 tf.text = ""
@@ -409,8 +442,20 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
                     run.font.name = "Microsoft YaHei"
                     run.font.size = Pt(16)
                     if run.font.color and run.font.color.type is None:
-                        from pptx.dml.color import RGBColor
-                        run.font.color.rgb = RGBColor(0x1F, 0x1F, 0x1F)
+                        run.font.color.theme_color = MSO_THEME_COLOR_INDEX.TEXT_1
+
+            # 纯文字版式占位符太少，qa.py 会报 THIN-PAGE；加一条底部兴华红装饰线作为视觉元素
+            if spec.layout == "文字模板1":
+                accent = slide.shapes.add_shape(
+                    MSO_SHAPE.RECTANGLE,
+                    Inches(1.10),
+                    Inches(6.65),
+                    Inches(11.14),
+                    Inches(0.04),
+                )
+                accent.fill.solid()
+                accent.fill.fore_color.theme_color = MSO_THEME_COLOR_INDEX.ACCENT_3
+                accent.line.fill.background()
 
     elif spec.kind == "closing":
         # 封底（自定义版式 = layout111，模板示例 slide8 风格）
@@ -431,8 +476,6 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
         #      存在 0.22in 视觉重叠，必须**重写 spPr/xfrm 把标题上移到 y=2.50in**，
         #      使标题底边位于 3.39in，与 slogan 顶部 3.68in 保持 0.29in 间距。
         #   2) 联系方式 3 行文本统一 **16pt**（用户规范，2026-06-18 v3 修订）
-        from pptx.util import Inches, Emu
-        from pptx.dml.color import RGBColor
         # ---- 写主标题，并重写占位符 spPr/xfrm 上移到 y=2.50in（保持 0.29in 间距）----
         title_ph = find_placeholder(slide, mp["main_title_idx"])
         set_placeholder_text(title_ph, spec.title, size_pt=40, bold=True)

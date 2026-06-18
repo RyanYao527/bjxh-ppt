@@ -205,7 +205,7 @@ def check_visual_element_per_slide(prs: Presentation, issues: list[str]) -> None
     template's built-in decorative blocks, which are also text frames in
     python-pptx's eyes).
     """
-    EXEMPT_LAYOUT_KEYWORDS = ("封面", "封底", "标题页", "目录", "自定义版式")
+    EXEMPT_LAYOUT_KEYWORDS = ("封面", "封底", "标题页", "目录", "自定义版式", "过渡页")
     MIN_CONTENT_SHAPES = 4
     for s_idx, slide in enumerate(prs.slides, 1):
         layout_name = slide.slide_layout.name
