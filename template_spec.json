@@ -1,0 +1,705 @@
+{
+  "source": "C:\\工作\\04-总结与报告\\2026年工作\\2026合伙人大会\\北京兴华模板.pptx",
+  "slide_count": 8,
+  "canvas": {
+    "width_emu": 12192000,
+    "height_emu": 6858000,
+    "width_in": 13.333,
+    "height_in": 7.5
+  },
+  "masters": [
+    {
+      "index": 0,
+      "layout_count": 111,
+      "layouts": [
+        {
+          "index": 0,
+          "name": "6_空白版式",
+          "placeholder_count": 0
+        },
+        {
+          "index": 1,
+          "name": "标题页-空白",
+          "placeholder_count": 3
+        },
+        {
+          "index": 2,
+          "name": "1_标题页-空白",
+          "placeholder_count": 11
+        },
+        {
+          "index": 3,
+          "name": "文字模板1",
+          "placeholder_count": 4
+        },
+        {
+          "index": 4,
+          "name": "文字模板2",
+          "placeholder_count": 7
+        },
+        {
+          "index": 5,
+          "name": "文字模板3",
+          "placeholder_count": 9
+        },
+        {
+          "index": 6,
+          "name": "文字模板4",
+          "placeholder_count": 9
+        },
+        {
+          "index": 7,
+          "name": "文字模板5",
+          "placeholder_count": 9
+        },
+        {
+          "index": 8,
+          "name": "文字模板6",
+          "placeholder_count": 13
+        },
+        {
+          "index": 9,
+          "name": "文字模板7",
+          "placeholder_count": 13
+        },
+        {
+          "index": 10,
+          "name": "文字模板8",
+          "placeholder_count": 9
+        },
+        {
+          "index": 11,
+          "name": "文字模板9",
+          "placeholder_count": 10
+        },
+        {
+          "index": 12,
+          "name": "文字模板10",
+          "placeholder_count": 16
+        },
+        {
+          "index": 13,
+          "name": "文字模板11",
+          "placeholder_count": 13
+        },
+        {
+          "index": 14,
+          "name": "文字模板12",
+          "placeholder_count": 10
+        },
+        {
+          "index": 15,
+          "name": "8_标题页-空白",
+          "placeholder_count": 10
+        },
+        {
+          "index": 16,
+          "name": "文字模板13",
+          "placeholder_count": 9
+        },
+        {
+          "index": 17,
+          "name": "前言1",
+          "placeholder_count": 3
+        },
+        {
+          "index": 18,
+          "name": "前言2",
+          "placeholder_count": 3
+        },
+        {
+          "index": 19,
+          "name": "文字模板14",
+          "placeholder_count": 16
+        },
+        {
+          "index": 20,
+          "name": "1_文字模板14",
+          "placeholder_count": 14
+        },
+        {
+          "index": 21,
+          "name": "文字模板15",
+          "placeholder_count": 14
+        },
+        {
+          "index": 22,
+          "name": "文字模板16",
+          "placeholder_count": 9
+        },
+        {
+          "index": 23,
+          "name": "文字模板17",
+          "placeholder_count": 9
+        },
+        {
+          "index": 24,
+          "name": "文字模板18",
+          "placeholder_count": 5
+        },
+        {
+          "index": 25,
+          "name": "文字模板19",
+          "placeholder_count": 8
+        },
+        {
+          "index": 26,
+          "name": "文字模板20",
+          "placeholder_count": 8
+        },
+        {
+          "index": 27,
+          "name": "动态1",
+          "placeholder_count": 10
+        },
+        {
+          "index": 28,
+          "name": "动态2",
+          "placeholder_count": 10
+        },
+        {
+          "index": 29,
+          "name": "动态3",
+          "placeholder_count": 10
+        },
+        {
+          "index": 30,
+          "name": "动态4",
+          "placeholder_count": 10
+        },
+        {
+          "index": 31,
+          "name": "动态5",
+          "placeholder_count": 10
+        },
+        {
+          "index": 32,
+          "name": "2动态-1",
+          "placeholder_count": 14
+        },
+        {
+          "index": 33,
+          "name": "2动态-2",
+          "placeholder_count": 14
+        },
+        {
+          "index": 34,
+          "name": "2动态-3",
+          "placeholder_count": 14
+        },
+        {
+          "index": 35,
+          "name": "样机1",
+          "placeholder_count": 12
+        },
+        {
+          "index": 36,
+          "name": "样机2",
+          "placeholder_count": 6
+        },
+        {
+          "index": 37,
+          "name": "样机3",
+          "placeholder_count": 6
+        },
+        {
+          "index": 38,
+          "name": "主题-封面",
+          "placeholder_count": 3
+        },
+        {
+          "index": 39,
+          "name": "主题-目录页",
+          "placeholder_count": 17
+        },
+        {
+          "index": 40,
+          "name": "1_主题-目录页",
+          "placeholder_count": 10
+        },
+        {
+          "index": 41,
+          "name": "1_主题-过渡页",
+          "placeholder_count": 4
+        },
+        {
+          "index": 42,
+          "name": "无图分段-3项",
+          "placeholder_count": 9
+        },
+        {
+          "index": 43,
+          "name": "无图分段-3项-3",
+          "placeholder_count": 9
+        },
+        {
+          "index": 44,
+          "name": "无图分段-4项",
+          "placeholder_count": 12
+        },
+        {
+          "index": 45,
+          "name": "无图分段-4项-2",
+          "placeholder_count": 11
+        },
+        {
+          "index": 46,
+          "name": "无图分段-4项-3",
+          "placeholder_count": 15
+        },
+        {
+          "index": 47,
+          "name": "无图分段-4项-4",
+          "placeholder_count": 11
+        },
+        {
+          "index": 48,
+          "name": "无图分段-4项-5",
+          "placeholder_count": 15
+        },
+        {
+          "index": 49,
+          "name": "无图分段-5项",
+          "placeholder_count": 13
+        },
+        {
+          "index": 50,
+          "name": "无图分段-多项",
+          "placeholder_count": 10
+        },
+        {
+          "index": 51,
+          "name": "有图分段式-1",
+          "placeholder_count": 12
+        },
+        {
+          "index": 52,
+          "name": "有图分段式-2",
+          "placeholder_count": 6
+        },
+        {
+          "index": 53,
+          "name": "有图分段式-3",
+          "placeholder_count": 9
+        },
+        {
+          "index": 54,
+          "name": "有图分段式-5",
+          "placeholder_count": 9
+        },
+        {
+          "index": 55,
+          "name": "有图分段式-6",
+          "placeholder_count": 7
+        },
+        {
+          "index": 56,
+          "name": "有图分段式-7",
+          "placeholder_count": 6
+        },
+        {
+          "index": 57,
+          "name": "有图分段式-8",
+          "placeholder_count": 7
+        },
+        {
+          "index": 58,
+          "name": "有图分段式-9",
+          "placeholder_count": 12
+        },
+        {
+          "index": 59,
+          "name": "有图分段式-12",
+          "placeholder_count": 12
+        },
+        {
+          "index": 60,
+          "name": "有图分段式-13",
+          "placeholder_count": 15
+        },
+        {
+          "index": 61,
+          "name": "有图分段式-14",
+          "placeholder_count": 7
+        },
+        {
+          "index": 62,
+          "name": "有图分段式-15",
+          "placeholder_count": 7
+        },
+        {
+          "index": 63,
+          "name": "有图分段式-16",
+          "placeholder_count": 1
+        },
+        {
+          "index": 64,
+          "name": "2_标题页-空白",
+          "placeholder_count": 5
+        },
+        {
+          "index": 65,
+          "name": "有图分段式-17",
+          "placeholder_count": 5
+        },
+        {
+          "index": 66,
+          "name": "有图分段式-18",
+          "placeholder_count": 7
+        },
+        {
+          "index": 67,
+          "name": "有图分段式-19",
+          "placeholder_count": 6
+        },
+        {
+          "index": 68,
+          "name": "有图分段式-20",
+          "placeholder_count": 8
+        },
+        {
+          "index": 69,
+          "name": "有图分段式-21",
+          "placeholder_count": 7
+        },
+        {
+          "index": 70,
+          "name": "有图分段式-22",
+          "placeholder_count": 5
+        },
+        {
+          "index": 71,
+          "name": "有图分段式-23",
+          "placeholder_count": 7
+        },
+        {
+          "index": 72,
+          "name": "有图分段式-24",
+          "placeholder_count": 7
+        },
+        {
+          "index": 73,
+          "name": "有图分段式-25",
+          "placeholder_count": 11
+        },
+        {
+          "index": 74,
+          "name": "逻辑-2",
+          "placeholder_count": 21
+        },
+        {
+          "index": 75,
+          "name": "逻辑-3",
+          "placeholder_count": 11
+        },
+        {
+          "index": 76,
+          "name": "逻辑-4",
+          "placeholder_count": 15
+        },
+        {
+          "index": 77,
+          "name": "逻辑-6",
+          "placeholder_count": 9
+        },
+        {
+          "index": 78,
+          "name": "逻辑-18",
+          "placeholder_count": 9
+        },
+        {
+          "index": 79,
+          "name": "逻辑-7",
+          "placeholder_count": 9
+        },
+        {
+          "index": 80,
+          "name": "逻辑-8",
+          "placeholder_count": 10
+        },
+        {
+          "index": 81,
+          "name": "逻辑-17",
+          "placeholder_count": 8
+        },
+        {
+          "index": 82,
+          "name": "逻辑-9",
+          "placeholder_count": 9
+        },
+        {
+          "index": 83,
+          "name": "逻辑-10",
+          "placeholder_count": 16
+        },
+        {
+          "index": 84,
+          "name": "逻辑-12",
+          "placeholder_count": 11
+        },
+        {
+          "index": 85,
+          "name": "逻辑-67",
+          "placeholder_count": 9
+        },
+        {
+          "index": 86,
+          "name": "逻辑-13",
+          "placeholder_count": 13
+        },
+        {
+          "index": 87,
+          "name": "逻辑-14",
+          "placeholder_count": 11
+        },
+        {
+          "index": 88,
+          "name": "逻辑-15",
+          "placeholder_count": 11
+        },
+        {
+          "index": 89,
+          "name": "图表-1",
+          "placeholder_count": 10
+        },
+        {
+          "index": 90,
+          "name": "图表-2",
+          "placeholder_count": 7
+        },
+        {
+          "index": 91,
+          "name": "图表-4",
+          "placeholder_count": 5
+        },
+        {
+          "index": 92,
+          "name": "图表-5",
+          "placeholder_count": 4
+        },
+        {
+          "index": 93,
+          "name": "图表-6",
+          "placeholder_count": 9
+        },
+        {
+          "index": 94,
+          "name": "图表-7",
+          "placeholder_count": 5
+        },
+        {
+          "index": 95,
+          "name": "图表-8",
+          "placeholder_count": 7
+        },
+        {
+          "index": 96,
+          "name": "3项",
+          "placeholder_count": 10
+        },
+        {
+          "index": 97,
+          "name": "架构图-2",
+          "placeholder_count": 50
+        },
+        {
+          "index": 98,
+          "name": "架构图-3",
+          "placeholder_count": 16
+        },
+        {
+          "index": 99,
+          "name": "架构图-4",
+          "placeholder_count": 21
+        },
+        {
+          "index": 100,
+          "name": "架构图-5",
+          "placeholder_count": 30
+        },
+        {
+          "index": 101,
+          "name": "1_架构图-6",
+          "placeholder_count": 12
+        },
+        {
+          "index": 102,
+          "name": "2_架构图-6",
+          "placeholder_count": 15
+        },
+        {
+          "index": 103,
+          "name": "架构图-8",
+          "placeholder_count": 17
+        },
+        {
+          "index": 104,
+          "name": "1_架构图-8",
+          "placeholder_count": 18
+        },
+        {
+          "index": 105,
+          "name": "架构图-9",
+          "placeholder_count": 6
+        },
+        {
+          "index": 106,
+          "name": "1_架构图-9",
+          "placeholder_count": 6
+        },
+        {
+          "index": 107,
+          "name": "纯图片",
+          "placeholder_count": 13
+        },
+        {
+          "index": 108,
+          "name": "主题-封底页",
+          "placeholder_count": 2
+        },
+        {
+          "index": 109,
+          "name": "空白",
+          "placeholder_count": 3
+        },
+        {
+          "index": 110,
+          "name": "自定义版式",
+          "placeholder_count": 2
+        }
+      ]
+    }
+  ],
+  "used_layouts_top": [
+    [
+      "标题页-空白",
+      2
+    ],
+    [
+      "主题-封面",
+      1
+    ],
+    [
+      "主题-目录页",
+      1
+    ],
+    [
+      "逻辑-9",
+      1
+    ],
+    [
+      "动态2",
+      1
+    ],
+    [
+      "逻辑-7",
+      1
+    ],
+    [
+      "自定义版式",
+      1
+    ]
+  ],
+  "sample_slides": [
+    {
+      "index": 0,
+      "layout": "标题页-空白",
+      "shape_count": 20,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 1,
+      "layout": "主题-封面",
+      "shape_count": 3,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 2,
+      "layout": "主题-目录页",
+      "shape_count": 17,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 3,
+      "layout": "标题页-空白",
+      "shape_count": 3,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 4,
+      "layout": "逻辑-9",
+      "shape_count": 9,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 5,
+      "layout": "动态2",
+      "shape_count": 10,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 6,
+      "layout": "逻辑-7",
+      "shape_count": 9,
+      "has_chart": false,
+      "has_table": false
+    },
+    {
+      "index": 7,
+      "layout": "自定义版式",
+      "shape_count": 4,
+      "has_chart": false,
+      "has_table": false
+    }
+  ],
+  "font_sample": [
+    [
+      "+mn-ea",
+      25
+    ],
+    [
+      "Arial",
+      6
+    ]
+  ],
+  "size_sample_pt": [
+    [
+      16.0,
+      9
+    ],
+    [
+      12.0,
+      4
+    ],
+    [
+      20.0,
+      3
+    ],
+    [
+      10.0,
+      3
+    ],
+    [
+      28.0,
+      2
+    ],
+    [
+      32.0,
+      1
+    ],
+    [
+      66.0,
+      1
+    ],
+    [
+      18.0,
+      1
+    ]
+  ]
+}
