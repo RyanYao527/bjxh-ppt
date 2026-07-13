@@ -197,97 +197,24 @@ assert prs.slide_width == 12192000 and prs.slide_height == 6858000
 | 倒数第 2 页（感谢） | `纯图片` 或 `标题页-空白` |
 | 最后 1 页（结束） | `自定义版式` (推荐) |
 
-### 6.2 封底（自定义版式）实测规范
+### 6.2 封底（自定义版式）
 
-> **数据来源**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx` 第 111 号版式（**自定义版式**）+ 模板示例 slide 7（1-based，即 0-based index 6）的内联形状。2026-06-18 通过 `inspect_layout` + `render_template` 实测确认，2026-06-18 v3 修订（标题位置上移 + 联系方式字号 16pt）。
+使用 `自定义版式`（layout #111）。关键要点：
+- 标题占位符 idx=11 需从模板默认的 (3.94, 3.01)in 上移到 (3.94, 2.50)in，避免与 slogan 文本框重叠
+- 需在 slide 层补加 logo 图片和联系方式文本框
+- 联系方式字号 16pt、白色
+- 不要写装饰文字（layout 内置）
 
-**layout 自带（不需代码补）**：
+> 完整逐像素规范、表格和示例代码见 **[docs/layout-spec.md §封底](docs/layout-spec.md#封底自定义版式)**
 
-| 元素 | 类型 | 位置(in) | 尺寸(in) | 说明 |
-|---|---|---|---|---|
-| 主标题占位符 | BODY 文本占位符 idx=11 | (3.94, **3.01**) | 5.44 × 0.89 | **模板默认位置**（代码必须重写,见下） |
-| 页码 | SLIDE_NUMBER 占位符 idx=10 | (12.07, 6.78) | 0.35 × 0.29 | PowerPoint 自动填 |
-| 装饰文字 | TEXT_BOX | (3.44, 3.68) | 6.02 × 0.45 | "诚信铸就品牌 专业创造价值" 14pt |
-| 顶部装饰 | PICTURE（红白波浪） | (6.00, 0.00) | 7.33 × 3.01 | layout 自带 |
-| 底部装饰 | PICTURE（红色波浪） | (0, ~6.5) | 13.33 × 1.0 | layout 自带 |
+### 6.3 封面（主题-封面）
 
-**slide 层必须补（模板示例 slide 7 的内联形状,代码 add）**：
+使用 `主题-封面` 版式。关键要点：
+- 主标题 66pt bold，与水印 "BEIJING XINGHUA" 产生 0.72in 视觉重叠
+- 副标题 18pt，强制单行（避免换行）
+- 不要 add logo 或写水印文字（layout 已内置）
 
-| 元素 | 类型 | 位置(in) | 尺寸(in) | 说明 |
-|---|---|---|---|---|
-| 主标题位置覆盖 | 重写 spPr/xfrm | **(3.94, 2.50)** | 5.44 × 0.89 | **必须上移到 y=2.50in**,与 slogan 顶部 3.68in 保持 0.29in 间距 |
-| Logo | PICTURE（拷贝自模板 media/image2.png） | (0.94, 0.82) | 1.98 × 0.51 | "北京兴华 XH GLOBAL" |
-| 联系方式 | TEXT_BOX | (0.94, 5.99) | 8.0 × 0.9 | 3 行：电话/传真/地址（**白字 16pt**） |
-
-**关键规则**
-- **必须**用 `自定义版式` 版式（不是 `主题-封底页`，那个是 THANKS 简版）
-- **只**写 idx=11 一个 placeholder（公司名"北京兴华集团"或自定），idx=10 由 PowerPoint 填
-- **必须重写 idx=11 的 spPr/xfrm** 把标题位置从模板默认 (3.94, 3.01) 上移到 (3.94, **2.50**)：
-  - 原因：模板默认位置 y=3.01 + 字号 40pt → 标题底边 ~3.90in,与 slogan 框顶部 3.68in 重叠 0.22in,视觉拥挤
-  - 修正：标题底边 = 2.50 + 0.89 = 3.39in,与 slogan 顶部 3.68in 留 0.29in 呼吸距离
-- **代码必须 add**：
-  1. 重写主标题 spPr/xfrm → 位置 (3.94, 2.50)in
-  2. 左下角 3 行联系方式文本框（**白字 16pt**，非 12pt，2026-06-18 v3 修订）
-  3. 左上角 logo 图片（从模板 `media/image2.png` 拷贝）
-- **不要**写装饰文字 "诚信铸就品牌专业创造价值" —— 它是 layout 内置的，写入会双重显示
-- 北京建筑背景 (image 65) 由 layout 自动继承，**不要**在 slide 层重复 add
-
-**示例代码**（`from_outline.py` 中已实现）：
-```python
-set_placeholder_text(
-    find_placeholder(slide, 10),  # 主题-封底页 唯一要写的占位符
-    spec.title,                    # 通常是 "谢谢观看" / "Q&A"
-    size_pt=36, bold=True
-)
-```
-
-### 6.3 封面（主题-封面）实测规范
-
-> **数据来源**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx` 第 39 号版式（**主题-封面**）。2026-06-18 通过 `inspect_layout` + `render_template` 实测确认，2026-06-18 v3 修订（标题 66pt + 副标题 18pt 强制单行）。
-
-**layout 自带（不需代码补）**：
-
-| 元素 | 类型 | 位置(in) | 尺寸(in) | 说明 |
-|---|---|---|---|---|
-| 灰色水印 | TEXT_BOX | (2.78, 2.20) | 8.03 × 1.01 | "BEIJING XINGHUA" 54pt Arial Black + softEdge 模糊 |
-| 主标题占位符 | BODY 文本占位符 idx=10 | (2.40, 2.62) | 8.54 × 1.18 | 默认 60pt bold |
-| 副标题占位符 | BODY 文本占位符 idx=11 | (0.51, 6.10) | 4.04 × 1.39 | 默认 20pt（3 行 "BEIJING XINGHUA CERTIFIED PUBLIC ACCOUNTANTS"） |
-| Logo | PICTURE | (0.94, 0.82) | 1.98 × 0.51 | "北京兴华 XH GLOBAL" |
-| 装饰 | PICTURE × 多 | — | — | 顶部右上 + 底部红色波浪 |
-
-**关键规则（2026-06-18 v3 修订）**：
-
-1. **主标题必须 66pt bold**（不是 28pt、36pt、60pt），强制与水印视觉重叠：
-   - 66pt 文字高 = 66/72 = 0.92in,在 1.18in 框内
-   - 占位符默认 y=2.62,文字中心 ~2.95in
-   - 水印框 y=2.20-3.21in,文字 y=2.46-3.21in
-   - 主标题文字 y=2.49-3.41in（默认锚定居中）
-   - **重叠区：y=2.49-3.21in（0.72in 视觉重叠）**
-   - ❌ 旧版 28pt 文字只占 0.39in 高,位于 y=3.02-3.41in,完全脱离水印顶部 2.46in
-2. **副标题必须 18pt**（不是 28pt），强制单行：
-   - 18pt 文字宽 "BEIJING XINGHUA GROUP" 约 3.5in < 框宽 4.04in → 单行
-   - ❌ 旧版 28pt 文字宽 ~5.4in > 4.04in 框宽,强制换行成 2 行
-   - **保持模板默认文本** "BEIJING XINGHUA CERTIFIED PUBLIC ACCOUNTANTS"（3 行）会被自动改为 18pt 但仍可能折行；
-     **建议**：直接复用模板默认英文机构名,或自行替换为更短文本
-3. **不要**写装饰文字"BEIJING XINGHUA" —— 它是 layout 内置灰色水印,写入会双重显示
-4. **不要**自己 add logo —— 模板 layout 已包含左上角 logo（图片 3）
-5. **不要**在 idx=10 标题占位符里写英文副标题 —— 副标题走 idx=11
-
-**示例代码**（`from_outline.py` 中已实现）：
-```python
-if spec.kind == "cover":
-    # 主标题 66pt（强制与水印视觉重叠）
-    set_placeholder_text(
-        find_placeholder(slide, 10),  # idx=10 主标题占位符
-        spec.title,                    # 来自 H1
-        size_pt=66, bold=True
-    )
-    # 副标题 idx=11 强制 18pt（避免 28pt 换行）
-    sub_ph = find_placeholder(slide, 11)
-    for para in sub_ph.text_frame.paragraphs:
-        for run in para.runs:
-            run.font.size = Pt(18)
-```
+> 完整逐像素规范、表格和示例代码见 **[docs/layout-spec.md §封面](docs/layout-spec.md#封面主题-封面)**
 
 ### 6.4 反模式
 
@@ -387,9 +314,13 @@ if spec.kind == "cover":
 
 ## 十二、参考
 
-- **母版文件**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx`
-- **示例 PPT**：`C:\工作\Disorderly\6-28-PPT\北京兴华-AI驱动的审计变革6-16_minimal_prompt_card.pptx`
+> **注意**：以下路径为原始作者的本地路径，读者需替换为自己的实际路径。
+> 模板路径可通过 `BJXH_TEMPLATE` 环境变量、`scripts/config.json` 或 CLI 参数配置。
+
+- **母版文件**：`C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx`（本地路径，读者需替换）
+- **示例 PPT**：`C:\工作\Disorderly\6-28-PPT\北京兴华-AI驱动的审计变革6-16_minimal_prompt_card.pptx`（本地路径）
 - **规范数据**：`template_spec.json`（自动生成）
+- **版式实测数据**：`docs/layout-spec.md`
 - **示例大纲**：`examples/`
 
 ---

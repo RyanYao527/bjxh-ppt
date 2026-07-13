@@ -5,6 +5,8 @@ Usage:
     python cli.py outline.md out.pptx [template.pptx]
 """
 
+from __future__ import annotations
+
 import argparse
 import shutil
 import sys
@@ -14,7 +16,7 @@ from pathlib import Path
 from pptx import Presentation
 from pptx.oxml.ns import qn
 
-from config import resolve_template_path
+from config import get_company_info, resolve_template_path
 from parse import parse_outline
 from render import render_page
 
@@ -69,6 +71,7 @@ def main() -> int:
         add_toc=args.add_toc,
         add_closing=args.add_closing,
         no_chapter_covers=args.no_chapter_covers,
+        closing_title=get_company_info()["company_name"],
     )
 
     # Copy template → temp, then strip existing slides.  python-pptx has no

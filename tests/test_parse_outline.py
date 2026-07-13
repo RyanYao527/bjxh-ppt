@@ -216,6 +216,22 @@ def test_h2_without_h1_still_works() -> None:
     assert "chapter" in kinds
 
 
+# -- closing_title ----------------------------------------------------------
+
+def test_closing_title_default() -> None:
+    text = "# Cover"
+    pages = parse_outline(text)
+    closing = [p for p in pages if p.kind == "closing"][0]
+    assert closing.title == "北京兴华集团"
+
+
+def test_closing_title_custom() -> None:
+    text = "# Cover"
+    pages = parse_outline(text, closing_title="Custom Corp")
+    closing = [p for p in pages if p.kind == "closing"][0]
+    assert closing.title == "Custom Corp"
+
+
 # -- PageSpec --------------------------------------------------------------
 
 def test_pagespec_repr() -> None:

@@ -122,11 +122,12 @@ This skill is parameterized entirely through the master template path. To use
 it with a different brand template:
 
 1. Drop your `.pptx` somewhere accessible.
-2. Either edit `DEFAULT_TEMPLATE` in `scripts/from_outline.py`, or pass the
-   path as the third CLI argument.
+2. Copy `scripts/config.example.json` to `scripts/config.json` and set `template_path`.
+   Alternatively, set the `BJXH_TEMPLATE` environment variable, or pass the path as
+   the third CLI argument to `from_outline.py`.
 3. Re-run `dump_template_spec.py` against the new template to refresh
    `template_spec.json`.
-4. Adjust the layout names in `scripts/from_outline.py → PLACEHOLDER_MAP`
+4. Adjust the layout names in `scripts/render.py → PLACEHOLDER_MAP`
    to match the new template's layout names.
 5. Update the size / color rules in `SKILL.md §2-§3` if your brand differs.
 

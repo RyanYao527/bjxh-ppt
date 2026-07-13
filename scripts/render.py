@@ -6,6 +6,8 @@ python-pptx Presentation, one slide per spec, using the placeholder
 mappings in PLACEHOLDER_MAP.
 """
 
+from __future__ import annotations
+
 import zipfile as _zip
 from io import BytesIO
 from pathlib import Path
