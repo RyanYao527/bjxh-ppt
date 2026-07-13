@@ -18,7 +18,6 @@ import sys
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.shapes.placeholder import PlaceholderPicture, PlaceholderShape  # noqa: F401
 
 
 def emu_to_in(emu: int | None) -> float | None:
