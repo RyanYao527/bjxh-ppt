@@ -72,9 +72,9 @@ echo.
 echo Next steps:
 echo   1. Make sure Python 3.11+ is installed and on PATH
 echo   2. Run: pip install python-pptx lxml
-echo   3. Verify the master template exists at:
-echo        C:\work\04-summary\2026\partner-meeting\BJXH-template.pptx
-echo      (if yours is elsewhere, edit scripts\from_outline.py DEFAULT_TEMPLATE)
+echo   3. Configure your template path — copy scripts\config.example.json
+echo      to scripts\config.json and set "template_path", or set the
+echo      BJXH_TEMPLATE environment variable.
 echo   4. Restart Claude Code / OpenCode to pick up the new skill
 echo.
 echo To uninstall: run uninstall.bat

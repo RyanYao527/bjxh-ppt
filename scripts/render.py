@@ -8,6 +8,7 @@ mappings in PLACEHOLDER_MAP.
 
 from __future__ import annotations
 
+import sys as _sys
 import zipfile as _zip
 from io import BytesIO
 from pathlib import Path
@@ -18,7 +19,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.dml import MSO_THEME_COLOR_INDEX
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.oxml.ns import qn
-from pptx.util import Emu, Inches, Pt
+from pptx.util import Inches, Pt
 
 from config import get_company_info
 from parse import PageSpec
@@ -100,7 +101,7 @@ PLACEHOLDER_MAP: dict[str, dict] = {
 # ---- layout / placeholder helpers -----------------------------------------
 
 
-def find_layout(prs: Presentation, name: str):
+def find_layout(prs: Presentation, name: str) -> "SlideLayout | None":
     """Return the SlideLayout with exact *name*, or None."""
     for master in prs.slide_masters:
         for layout in master.slide_layouts:
@@ -132,7 +133,13 @@ def set_placeholder_text(
     Font name, size, line-spacing, and theme color are set explicitly so
     qa.py will not flag them as None.
     """
-    if ph is None or not ph.has_text_frame:
+    if ph is None:
+        _sys.stderr.write(
+            f"Warning: set_placeholder_text called with None placeholder "
+            f"(text='{text[:40]}'). The slide will be missing this content.\n"
+        )
+        return False
+    if not ph.has_text_frame:
         return False
     tf = ph.text_frame
     tf.text = ""
@@ -202,6 +209,13 @@ def render_page(
 
     # -- table of contents --------------------------------------------------
     elif spec.kind == "toc":
+        if len(spec.bullets) > len(mp["item_idxs"]):
+            _sys.stderr.write(
+                f"Warning: {len(spec.bullets)} chapters but TOC layout only "
+                f"supports {len(mp['item_idxs'])}. "
+                f"Chapters {len(mp['item_idxs']) + 1}+ will not appear in the "
+                f"table of contents.\n"
+            )
         for i, idx in enumerate(mp["item_idxs"]):
             text = spec.bullets[i] if i < len(spec.bullets) else ""
             set_placeholder_text(
@@ -388,15 +402,21 @@ def render_page(
                 r2.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
         # Logo (extracted from the template zip)
-        with _zip.ZipFile(str(template_path)) as z:
-            logo_bytes = z.read("ppt/media/image2.png")
-        slide.shapes.add_picture(
-            BytesIO(logo_bytes),
-            Inches(0.94),
-            Inches(0.82),
-            width=Inches(1.98),
-            height=Inches(0.51),
-        )
+        try:
+            with _zip.ZipFile(str(template_path)) as z:
+                logo_bytes = z.read("ppt/media/image2.png")
+            slide.shapes.add_picture(
+                BytesIO(logo_bytes),
+                Inches(0.94),
+                Inches(0.82),
+                width=Inches(1.98),
+                height=Inches(0.51),
+            )
+        except (KeyError, _zip.BadZipFile, OSError) as exc:
+            print(
+                f"Warning: could not extract logo from template: {exc}",
+                file=sys.stderr,
+            )
 
     # -- speaker notes (cover + closing only) -------------------------------
     if spec.note and spec.kind in ("cover", "closing"):
