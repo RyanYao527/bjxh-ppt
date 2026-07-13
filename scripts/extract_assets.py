@@ -108,7 +108,7 @@ def extract_images(prs: Presentation, out_dir: Path) -> list[dict[str, object]]:
                     ext: str = img.ext or "png"
                     blob: bytes = img.blob
                     size: tuple[int, int] | None = img.size
-                except Exception as e:
+                except (AttributeError, KeyError, OSError) as e:
                     print(
                         f"  Warning: cannot read image on slide {s_idx}: {e}",
                         file=sys.stderr,
@@ -199,7 +199,7 @@ def extract_text_snippets(
                     t = shp.text.strip()
                     if t:
                         texts.append(t)
-                except Exception:
+                except (AttributeError, TypeError):
                     pass
             # Deduplicate while preserving order
             seen: set[str] = set()

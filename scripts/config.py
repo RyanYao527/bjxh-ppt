@@ -47,7 +47,9 @@ def resolve_template_path() -> str:
     if cfg_path and Path(cfg_path).exists():
         return cfg_path
 
-    # Legacy fallback — unlikely to exist outside the original author's machine.
+    # Legacy fallback — the original author's local path.  This only activates
+    # when the path actually exists on disk (guarded by Path(legacy).exists()
+    # below).  Other users should configure via BJXH_TEMPLATE or config.json.
     legacy: str = (
         r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx"
     )
