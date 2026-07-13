@@ -16,8 +16,6 @@ from pathlib import Path
 from typing import Any
 
 from pptx import Presentation
-from pptx.shapes.shapetree import SlideShapes  # noqa: F401 — used in type hints
-from pptx.util import Emu  # noqa: F401 — used in type hints
 
 
 CANVAS_W: int = 12192000
