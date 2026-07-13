@@ -19,7 +19,6 @@ import sys
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.shapes.shapes import BaseShape  # noqa: F401
 from pptx.util import Emu  # noqa: F401
 
 
