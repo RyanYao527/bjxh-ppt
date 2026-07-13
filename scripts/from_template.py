@@ -18,11 +18,15 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from pptx import Presentation
-from pptx.slide import Slide, SlideLayout, Slides  # noqa: F401
 
-from shared import apply_minimal_formatting  # noqa: F401 — re-exported for compat
+if TYPE_CHECKING:
+    from pptx.slide import Slide
+
+from render import find_layout
+from shared import apply_minimal_formatting
 
 
 # 2026 兴华模板 — 标准 12 个常用版式（详见 SKILL.md §6.1）
@@ -32,15 +36,6 @@ STANDARD_CLOSING: str = "主题-封底页"
 
 def parse_layout_list(raw: str) -> list[str]:
     return [s.strip() for s in raw.split(",") if s.strip()]
-
-
-def find_layout(prs: Presentation, name: str) -> SlideLayout | None:
-    """Find a slide layout by exact name across all slide masters."""
-    for master in prs.slide_masters:
-        for layout in master.slide_layouts:
-            if layout.name == name:
-                return layout
-    return None
 
 
 def main() -> int:
