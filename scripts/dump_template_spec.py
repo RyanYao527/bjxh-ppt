@@ -2,19 +2,23 @@
 dump_template_spec.py — read the master PPT template, dump its real spec to JSON.
 
 This is a one-time diagnostic used to verify the SKILL.md spec numbers against
-the actual master file. NOT shipped to end users; called only during skill
+the actual master file.  NOT shipped to end users; called only during skill
 bootstrapping.
 
 Usage:
     python dump_template_spec.py <path-to-template.pptx> <output.json>
 """
+
+from __future__ import annotations
+
 import json
 import sys
 from collections import Counter
 from pathlib import Path
+from typing import Any
 
 from pptx import Presentation
-from pptx.util import Emu
+from pptx.slide import Slide, Slides  # noqa: F401
 
 
 def emu_to_inches(emu: int) -> float:
@@ -25,7 +29,7 @@ def main(template_path: str, output_path: str) -> None:
     prs = Presentation(template_path)
 
     # 1) Canvas
-    canvas = {
+    canvas: dict[str, float | int] = {
         "width_emu": prs.slide_width,
         "height_emu": prs.slide_height,
         "width_in": emu_to_inches(prs.slide_width),
@@ -33,9 +37,9 @@ def main(template_path: str, output_path: str) -> None:
     }
 
     # 2) Slide masters + their slide layouts
-    masters = []
+    masters: list[dict[str, Any]] = []
     for m_idx, master in enumerate(prs.slide_masters):
-        layouts = []
+        layouts: list[dict[str, Any]] = []
         for l_idx, layout in enumerate(master.slide_layouts):
             layouts.append(
                 {
@@ -52,10 +56,9 @@ def main(template_path: str, output_path: str) -> None:
             }
         )
 
-    # 3) Aggregate layout name frequency across all slides (so we know which
-    #    layouts the template actually uses in its demo pages)
-    used_layouts: Counter = Counter()
-    slide_summaries = []
+    # 3) Aggregate layout name frequency across all slides
+    used_layouts: Counter[str] = Counter()
+    slide_summaries: list[dict[str, Any]] = []
     for s_idx, slide in enumerate(prs.slides):
         used_layouts[slide.slide_layout.name] += 1
         if s_idx < 30:  # sample first 30 slides for the dump
@@ -73,9 +76,9 @@ def main(template_path: str, output_path: str) -> None:
                 }
             )
 
-    # 4) Scan first 60 slides for font/size/color sample (real usage, not layout)
-    font_counter: Counter = Counter()
-    size_counter: Counter = Counter()
+    # 4) Scan first 60 slides for font/size/color sample
+    font_counter: Counter[str] = Counter()
+    size_counter: Counter[float] = Counter()
     for slide in list(prs.slides)[:60]:
         for shape in slide.shapes:
             if not shape.has_text_frame:
@@ -89,7 +92,7 @@ def main(template_path: str, output_path: str) -> None:
                     if run.font.size:
                         size_counter[run.font.size.pt] += 1
 
-    spec = {
+    spec: dict[str, Any] = {
         "source": str(Path(template_path).resolve()),
         "slide_count": len(prs.slides),
         "canvas": canvas,
@@ -104,7 +107,10 @@ def main(template_path: str, output_path: str) -> None:
         json.dumps(spec, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     print(f"Wrote {output_path}")
-    print(f"Slides: {spec['slide_count']}, Canvas: {canvas['width_in']}\" x {canvas['height_in']}\"")
+    print(
+        f"Slides: {spec['slide_count']}, "
+        f"Canvas: {canvas['width_in']}\" x {canvas['height_in']}\""
+    )
     print(f"Top layouts: {spec['used_layouts_top'][:5]}")
     print(f"Top fonts: {spec['font_sample'][:5]}")
     print(f"Top sizes: {spec['size_sample_pt'][:5]}")

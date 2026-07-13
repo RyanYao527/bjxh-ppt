@@ -12,25 +12,29 @@ Examples:
 The output file inherits the template's theme (colors, fonts, master, layouts)
 and is ready to be opened in PowerPoint for content entry.
 """
+
+from __future__ import annotations
+
 import argparse
 import sys
 from pathlib import Path
 
 from pptx import Presentation
+from pptx.slide import Slide, SlideLayout, Slides  # noqa: F401
 
-from shared import apply_minimal_formatting  # noqa: F401 — re-exported for compatibility
+from shared import apply_minimal_formatting  # noqa: F401 — re-exported for compat
 
 
 # 2026 兴华模板 — 标准 12 个常用版式（详见 SKILL.md §6.1）
-STANDARD_OPENING = "主题-封面,主题-目录页,标题页-空白"
-STANDARD_CLOSING = "主题-封底页"
+STANDARD_OPENING: str = "主题-封面,主题-目录页,标题页-空白"
+STANDARD_CLOSING: str = "主题-封底页"
 
 
 def parse_layout_list(raw: str) -> list[str]:
     return [s.strip() for s in raw.split(",") if s.strip()]
 
 
-def find_layout(prs: Presentation, name: str):
+def find_layout(prs: Presentation, name: str) -> SlideLayout | None:
     """Find a slide layout by exact name across all slide masters."""
     for master in prs.slide_masters:
         for layout in master.slide_layouts:
@@ -56,9 +60,9 @@ def main() -> int:
 
     prs = Presentation(str(template_path))
 
-    layout_names = parse_layout_list(args.layouts)
+    layout_names: list[str] = parse_layout_list(args.layouts)
     missing: list[str] = []
-    new_slides = []
+    new_slides: list[tuple[str, Slide]] = []
 
     for name in layout_names:
         layout = find_layout(prs, name)

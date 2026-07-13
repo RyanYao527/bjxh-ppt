@@ -10,13 +10,16 @@ Company contact info is read from config.json; the hardcoded defaults
 below are placeholders that should be replaced per deployment.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import sys
 from pathlib import Path
+from typing import Any
 
 
-def _find_config() -> dict:
+def _find_config() -> dict[str, Any]:
     """Load config.json from the same directory as this script, or return {}."""
     config_path = Path(__file__).parent / "config.json"
     if config_path.exists():
@@ -35,18 +38,17 @@ def resolve_template_path() -> str:
         - config.json → template_path
         - legacy fallback (may not exist on non-Windows or different machines)
     """
-    env_path = os.environ.get("BJXH_TEMPLATE")
+    env_path: str | None = os.environ.get("BJXH_TEMPLATE")
     if env_path and Path(env_path).exists():
         return env_path
 
-    cfg = _find_config()
-    cfg_path = cfg.get("template_path")
+    cfg: dict[str, Any] = _find_config()
+    cfg_path: str | None = cfg.get("template_path")
     if cfg_path and Path(cfg_path).exists():
         return cfg_path
 
-    # Legacy fallback — emits a warning because this path is unlikely to exist
-    # on anyone else's machine.
-    legacy = (
+    # Legacy fallback — unlikely to exist outside the original author's machine.
+    legacy: str = (
         r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx"
     )
     if Path(legacy).exists():
@@ -67,8 +69,8 @@ def get_company_info() -> dict[str, str]:
 
     Keys: phone, fax, address, company_name.
     """
-    cfg = _find_config()
-    company = cfg.get("company", {})
+    cfg: dict[str, Any] = _find_config()
+    company: dict[str, Any] = cfg.get("company", {})
     return {
         "company_name": company.get("company_name", "北京兴华集团"),
         "phone": company.get("phone", ""),
