@@ -23,3 +23,9 @@ jobs:
 
       - name: Run tests
         run: python -m pytest tests/ -v
+
+      - name: QA — audit_demo
+        run: python scripts/qa.py examples/audit_demo.pptx
+
+      - name: QA — xxb_report
+        run: python scripts/qa.py examples/xxb_2025_2026_report.pptx
