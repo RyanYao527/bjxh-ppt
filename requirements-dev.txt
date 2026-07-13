@@ -1,0 +1,3 @@
+python-pptx>=1.0.0
+lxml
+pytest>=7.0

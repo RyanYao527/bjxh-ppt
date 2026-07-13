@@ -17,7 +17,8 @@ import sys
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.util import Pt
+
+from shared import apply_minimal_formatting  # noqa: F401 — re-exported for compatibility
 
 
 # 2026 兴华模板 — 标准 12 个常用版式（详见 SKILL.md §6.1）
@@ -36,23 +37,6 @@ def find_layout(prs: Presentation, name: str):
             if layout.name == name:
                 return layout
     return None
-
-
-def apply_minimal_formatting(slide) -> None:
-    """Apply minimal but spec-compliant formatting to every text run:
-    - font.name = 'Microsoft YaHei' (ASCII chars handled by East Asian theme)
-    - font.size = Pt(16) (body default) unless already set
-    This is a safety net; most placeholders inherit from layouts.
-    """
-    for shape in slide.shapes:
-        if not shape.has_text_frame:
-            continue
-        for paragraph in shape.text_frame.paragraphs:
-            for run in paragraph.runs:
-                if run.font.name is None:
-                    run.font.name = "Microsoft YaHei"
-                if run.font.size is None:
-                    run.font.size = Pt(16)
 
 
 def main() -> int:

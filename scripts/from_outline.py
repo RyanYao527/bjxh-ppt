@@ -35,17 +35,8 @@ from pptx.enum.dml import MSO_THEME_COLOR_INDEX
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.util import Emu, Inches, Pt
 
-try:
-    from from_template import apply_minimal_formatting
-except ImportError:
-    # allow running from any cwd
-    sys.path.insert(0, str(Path(__file__).parent))
-    from from_template import apply_minimal_formatting  # type: ignore
-
-
-DEFAULT_TEMPLATE = (
-    r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx"
-)
+from config import get_company_info, resolve_template_path
+from shared import apply_minimal_formatting
 
 # H3 缺省使用的版式。文字模板1 占位符太少，qa.py 会认为内容页过薄；
 # 默认使用无图分段-3项，既有结构化分段，又能通过视觉元素检查。
@@ -93,10 +84,10 @@ def parse_outline(
 ) -> list[PageSpec]:
     """Parse a markdown outline into a list of PageSpec objects."""
     pages: list[PageSpec] = []
-    current_chapter: str | None = None
     current: PageSpec | None = None
     h2_titles: list[str] = []
     cover_added = False
+    line_number: int = 0
 
     def flush() -> None:
         nonlocal current
@@ -105,39 +96,46 @@ def parse_outline(
             current = None
 
     for raw_line in text.splitlines():
+        line_number += 1
         line = raw_line.rstrip()
         if not line.strip():
             continue
 
         m = H1_RE.match(line)
-        if m and not cover_added:
-            flush()
-            current = PageSpec(
-                kind="cover",
-                title=m.group(1).strip(),
-                layout="主题-封面",
-                bullets=[],
-            )
-            cover_added = True
+        if m:
+            if not cover_added:
+                flush()
+                current = PageSpec(
+                    kind="cover",
+                    title=m.group(1).strip(),
+                    layout="主题-封面",
+                    bullets=[],
+                )
+                cover_added = True
+            else:
+                print(
+                    f"Warning: line {line_number}: duplicate H1 '# {m.group(1).strip()[:40]}' ignored "
+                    f"(only the first H1 is used as the cover title).",
+                    file=sys.stderr,
+                )
             continue
 
         m = H2_RE.match(line)
         if m:
             flush()
-            current_chapter = m.group(1).strip()
-            h2_titles.append(current_chapter)
+            chapter_title = m.group(1).strip()
+            h2_titles.append(chapter_title)
             if no_chapter_covers:
-                # H2 acts as a content page; layout can be overridden with > layout:
                 current = PageSpec(
                     kind="content",
-                    title=current_chapter,
+                    title=chapter_title,
                     layout=DEFAULT_CONTENT_LAYOUT,
                     bullets=[],
                 )
             else:
                 current = PageSpec(
                     kind="chapter",
-                    title=current_chapter,
+                    title=chapter_title,
                     layout="标题页-空白",
                     bullets=[],
                 )
@@ -166,7 +164,20 @@ def parse_outline(
                 current.layout = val
             elif key == "note":
                 current.note = val
+            else:
+                print(
+                    f"Warning: line {line_number}: unknown directive '>{line[1:].strip()[:60]}' ignored "
+                    f"(supported: layout, note).",
+                    file=sys.stderr,
+                )
             continue
+
+        # Line doesn't match any known pattern
+        if current is not None:
+            print(
+                f"Warning: line {line_number}: unrecognized line ignored: '{line[:80]}'",
+                file=sys.stderr,
+            )
 
     flush()
 
@@ -193,10 +204,11 @@ def parse_outline(
         pages.insert(insert_at, toc)
 
     if add_closing and pages and pages[-1].kind != "closing":
+        company = get_company_info()
         pages.append(
             PageSpec(
                 kind="closing",
-                title="北京兴华集团",   # 封底使用公司名(模板 自定义版式 layout111 设计)
+                title=company["company_name"],
                 layout="自定义版式",
                 bullets=[],
             )
@@ -537,23 +549,27 @@ def render_page(prs: Presentation, spec: PageSpec) -> None:
         new_ext.set('cx', str(int(5.44 * 914400)))
         new_ext.set('cy', str(int(0.89 * 914400)))
         # ---- 补：左下角联系方式文本框（slide 层独立添加，匹配模板示例 slide8）----
-        tb = slide.shapes.add_textbox(Inches(0.94), Inches(5.99), Inches(8.0), Inches(0.9))
-        tb.text_frame.word_wrap = True
-        lines = [
-            ("电话：", "010-82250666"),
-            ("传真：", "010-82250851"),
-            ("地址：", "北京市西城区裕民路18号北环中心27层"),
-        ]
-        for i, (label, value) in enumerate(lines):
-            p = tb.text_frame.paragraphs[0] if i == 0 else tb.text_frame.add_paragraph()
-            r1 = p.add_run(); r1.text = label
-            r1.font.name = "Microsoft YaHei"; r1.font.size = Pt(16); r1.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
-            r2 = p.add_run(); r2.text = value
-            r2.font.name = "Microsoft YaHei"; r2.font.size = Pt(16); r2.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        company = get_company_info()
+        contact_lines: list[tuple[str, str]] = []
+        if company["phone"]:
+            contact_lines.append(("电话：", company["phone"]))
+        if company["fax"]:
+            contact_lines.append(("传真：", company["fax"]))
+        if company["address"]:
+            contact_lines.append(("地址：", company["address"]))
+        if contact_lines:
+            tb = slide.shapes.add_textbox(Inches(0.94), Inches(5.99), Inches(8.0), Inches(0.9))
+            tb.text_frame.word_wrap = True
+            for i, (label, value) in enumerate(contact_lines):
+                p = tb.text_frame.paragraphs[0] if i == 0 else tb.text_frame.add_paragraph()
+                r1 = p.add_run(); r1.text = label
+                r1.font.name = "Microsoft YaHei"; r1.font.size = Pt(16); r1.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+                r2 = p.add_run(); r2.text = value
+                r2.font.name = "Microsoft YaHei"; r2.font.size = Pt(16); r2.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
         # ---- 补：左上角 logo（从模板 media/image2.png 抽取并插入）----
         import zipfile as _zip
         from io import BytesIO
-        with _zip.ZipFile(str(Path(DEFAULT_TEMPLATE))) as z:
+        with _zip.ZipFile(str(template_path)) as z:
             logo_bytes = z.read('ppt/media/image2.png')
         slide.shapes.add_picture(BytesIO(logo_bytes), Inches(0.94), Inches(0.82),
                                   width=Inches(1.98), height=Inches(0.51))
@@ -566,7 +582,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("outline", help="path to outline.md")
     parser.add_argument("output", help="output .pptx path")
-    parser.add_argument("template", nargs="?", default=DEFAULT_TEMPLATE, help="template .pptx path")
+    parser.add_argument("template", nargs="?", default=None, help="template .pptx path (optional: uses BJXH_TEMPLATE env var or config.json if omitted)")
     parser.add_argument("--no-toc", dest="add_toc", action="store_false")
     parser.add_argument("--no-closing", dest="add_closing", action="store_false")
     parser.add_argument(
@@ -583,9 +599,13 @@ def main() -> int:
         print(f"ERROR: outline not found: {outline_path}", file=sys.stderr)
         return 1
 
-    template_path = Path(args.template)
+    if args.template:
+        template_path = Path(args.template)
+    else:
+        template_path = Path(resolve_template_path())
     if not template_path.exists():
         print(f"ERROR: template not found: {template_path}", file=sys.stderr)
+        print("Set BJXH_TEMPLATE env var or create scripts/config.json with 'template_path'.", file=sys.stderr)
         return 1
 
     text = outline_path.read_text(encoding="utf-8")
