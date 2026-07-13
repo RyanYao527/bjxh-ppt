@@ -5,10 +5,17 @@ Formerly, apply_minimal_formatting was duplicated in from_template.py
 and imported via a brittle sys.path hack in from_outline.py.
 """
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from pptx.util import Pt
 
+if TYPE_CHECKING:
+    from pptx.slide import Slide
 
-def apply_minimal_formatting(slide) -> None:
+
+def apply_minimal_formatting(slide: Slide) -> None:
     """Apply minimal but spec-compliant formatting to every text run.
 
     - font.name = 'Microsoft YaHei'

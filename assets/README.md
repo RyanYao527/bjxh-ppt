@@ -16,6 +16,13 @@
 - `text-snippets.md`：每页的文字内容汇总，便于复制使用。
 - `index.json`：机器可读的素材索引。
 
+> **注意**: `renders/` 目录目前仅包含 51/121 页的 PNG 预览，不完整。
+> 如需完整的预览图，请运行：
+> ```bash
+> python scripts/extract_assets.py "3、北京兴华PPT模版.pptx" assets/
+> ```
+> 需要 LibreOffice + PyMuPDF (fitz)。
+
 ## 使用方式
 
 1. 在 `renders/` 中浏览找到需要的素材页。

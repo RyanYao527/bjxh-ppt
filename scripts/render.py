@@ -27,10 +27,11 @@ from shared import apply_minimal_formatting
 
 # PLACEHOLDER_MAP is the single source of truth for "which idx in which
 # layout holds what content".  Data verified against the BJXH 2026 partner-
-# meeting template via inspect_placeholders (2026-06-18).
+# meeting template via scripts/inspect_placeholders.py (2026-06-18).
 #
-# Maintenance rule: when the master template changes, re-verify every entry
-# here against the new pptx.  Do not guess.
+# Maintenance rule: when the master template changes, run
+#   python scripts/inspect_placeholders.py <new-template.pptx>
+# and re-verify every entry here.  Do not guess.
 
 PLACEHOLDER_MAP: dict[str, dict] = {
     "主题-封面": {
