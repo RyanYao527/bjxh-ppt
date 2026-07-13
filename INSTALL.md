@@ -89,20 +89,23 @@ New-Item -ItemType Directory -Force -Path $dir
 # 然后把 北京兴华模板.pptx 拷到这个目录
 ```
 
-#### 方式 B：放到你自己的位置，编辑 skill 脚本
+#### 方式 B：放到你自己的位置，编辑配置文件
 
-打开 `%USERPROFILE%\.claude\skills\bjxh-ppt\scripts\from_outline.py`，找到第 43-45 行：
+将 `scripts/config.example.json` 复制为 `scripts/config.json`，修改其中的 `template_path`：
 
-```python
-DEFAULT_TEMPLATE = (
-    r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会\北京兴华模板.pptx"
-)
+```json
+{
+    "template_path": "D:/templates/BJXH-master.pptx",
+    "company": {
+        "company_name": "北京兴华集团",
+        "phone": "010-82250666",
+        "fax": "010-82250851",
+        "address": "北京市西城区裕民路18号北环中心27层"
+    }
+}
 ```
 
-改成你自己的路径，比如：
-```python
-DEFAULT_TEMPLATE = r"D:\templates\BJXH-master.pptx"
-```
+或者设置环境变量 `BJXH_TEMPLATE` 指向模板文件路径。
 
 ---
 

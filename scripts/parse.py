@@ -5,10 +5,11 @@ Converts a Markdown outline into a list of PageSpec objects that drive
 render.py.  See examples/audit_demo.md for the expected input format.
 """
 
+from __future__ import annotations
+
 import re
 import sys
-
-from config import get_company_info
+from dataclasses import dataclass, field, replace
 
 
 # ---- regex patterns -------------------------------------------------------
@@ -28,6 +29,7 @@ DEFAULT_CONTENT_LAYOUT: str = "无图分段-3项"
 # ---- PageSpec -------------------------------------------------------------
 
 
+@dataclass(frozen=True)
 class PageSpec:
     """One output page.
 
@@ -36,21 +38,12 @@ class PageSpec:
     render_page().
     """
 
-    def __init__(
-        self,
-        kind: str,
-        title: str,
-        layout: str,
-        bullets: list[str],
-        note: str = "",
-        toc_page_numbers: list[str] | None = None,
-    ) -> None:
-        self.kind = kind          # 'cover' | 'toc' | 'chapter' | 'content' | 'closing'
-        self.title = title
-        self.layout = layout
-        self.bullets = bullets
-        self.note = note
-        self.toc_page_numbers = toc_page_numbers or []
+    kind: str   # 'cover' | 'toc' | 'chapter' | 'content' | 'closing'
+    title: str
+    layout: str
+    bullets: list[str] = field(default_factory=list)
+    note: str = ""
+    toc_page_numbers: list[str] = field(default_factory=list)
 
     def __repr__(self) -> str:
         return (
@@ -68,6 +61,7 @@ def parse_outline(
     add_toc: bool = True,
     add_closing: bool = True,
     no_chapter_covers: bool = False,
+    closing_title: str = "北京兴华集团",
 ) -> list[PageSpec]:
     """Parse a Markdown outline into a list of PageSpec objects.
 
@@ -84,6 +78,9 @@ def parse_outline(
     no_chapter_covers :
         Treat ``##`` headings as content pages instead of chapter-dividers.
         Useful for compact decks (cover + TOC + N content pages + closing).
+    closing_title :
+        Title text for the closing slide.  Defaults to the BJXH company name.
+        Set this from config or CLI when using a different organisation.
     """
     pages: list[PageSpec] = []
     current: PageSpec | None = None
@@ -111,7 +108,6 @@ def parse_outline(
                     kind="cover",
                     title=m.group(1).strip(),
                     layout="主题-封面",
-                    bullets=[],
                 )
                 cover_added = True
             else:
@@ -133,14 +129,12 @@ def parse_outline(
                     kind="content",
                     title=chapter_title,
                     layout=DEFAULT_CONTENT_LAYOUT,
-                    bullets=[],
                 )
             else:
                 current = PageSpec(
                     kind="chapter",
                     title=chapter_title,
                     layout="标题页-空白",
-                    bullets=[],
                 )
             continue
 
@@ -151,22 +145,23 @@ def parse_outline(
                 kind="content",
                 title=m.group(1).strip(),
                 layout=DEFAULT_CONTENT_LAYOUT,
-                bullets=[],
             )
             continue
 
         m = UL_RE.match(line)
         if m and current is not None:
-            current.bullets.append(m.group(1).strip())
+            current = replace(
+                current, bullets=current.bullets + [m.group(1).strip()]
+            )
             continue
 
         m = DIRECTIVE_RE.match(line)
         if m and current is not None:
             key, val = m.group(1).lower(), m.group(2).strip()
             if key == "layout":
-                current.layout = val
+                current = replace(current, layout=val)
             elif key == "note":
-                current.note = val
+                current = replace(current, note=val)
             else:
                 print(
                     f"Warning: line {line_number}: unknown directive "
@@ -207,13 +202,11 @@ def parse_outline(
 
     # ---- post-processing: append closing -------------------------------
     if add_closing and pages and pages[-1].kind != "closing":
-        company: dict[str, str] = get_company_info()
         pages.append(
             PageSpec(
                 kind="closing",
-                title=company["company_name"],
+                title=closing_title,
                 layout="自定义版式",
-                bullets=[],
             )
         )
 

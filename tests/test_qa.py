@@ -53,8 +53,11 @@ def test_forbidden_fonts_contains_common_violations() -> None:
     ("B JH", True),
     ("J ", True),
     (" B ", True),
+    ("BJH", True),              # three chars joined — new regex catches this
+    ("B.J.H", True),            # dot-separated triplet
+    ("B.J", True),              # dot-separated pair
+    ("B H", True),              # space-separated pair
     # Should NOT match:
-    ("BJH", False),             # three chars joined — no separator
     ("BEIJING XINGHUA", False),  # full words
     ("这是一个B示例", False),     # B embedded in CJK text
     ("正文B正文", False),         # B embedded

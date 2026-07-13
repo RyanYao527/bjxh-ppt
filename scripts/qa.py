@@ -49,8 +49,15 @@ FORBIDDEN_FONTS: set[str] = {
 # §4.2 模板编辑提示色
 EDIT_NOTE_GREY: tuple[int, int, int] = (0x44, 0x54, 0x69)  # #445469
 
-# §7 占位符孤立字母
-BJH_PATTERN: re.Pattern[str] = re.compile(r"(?:^|\s|[，。：；、])[BJHX](?:$|\s|[，。：；、])")
+# §7 占位符孤立字母 — matches isolated B/J/H/X characters (old template residue)
+# as well as consecutive runs or dot/space-separated pairs.
+BJH_PATTERN: re.Pattern[str] = re.compile(
+    r"(?:^|\s|[，。：；、])[BJHX](?:$|\s|[，。：；、])"  # single isolated char
+    r"|"
+    r"[BJHX]{2,}"  # two or more consecutive (e.g. "BJH")
+    r"|"
+    r"[BJHX][.\s][BJHX]"  # dot- or space-separated pair (e.g. "B.J", "B H")
+)
 
 
 def iter_text_runs(slide: Any) -> Generator[tuple[Any, Any, Any], None, None]:

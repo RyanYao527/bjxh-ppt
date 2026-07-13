@@ -28,6 +28,8 @@ Implementation spread across three modules for maintainability:
     cli.py     — CLI entry point   (main)
 """
 
+from __future__ import annotations
+
 # Re-exports for backwards compatibility — scripts that import from
 # from_outline continue to work unchanged.
 from cli import main
