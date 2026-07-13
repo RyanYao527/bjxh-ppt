@@ -27,6 +27,9 @@ desktop.ini
 # Local-only path leaks (skill normalizes this in scripts/ anyway)
 rendered/
 
+# Local config (copy config.example.json → config.json and edit)
+scripts/config.json
+
 # Local build tools (LibreOffice, lessmsi, etc.) used to generate assets/
 # Assets themselves are committed; the generators are not.
 tools/
