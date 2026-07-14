@@ -21,6 +21,18 @@ from parse import parse_outline
 from render import render_page
 
 
+def _drop_all_slides(prs: Presentation) -> None:
+    """Remove all slides from *prs*, keeping masters and layouts.
+
+    Uses python-pptx internal API (_sldIdLst); tracked as known dependency.
+    """
+    xml_slides = prs.slides._sldIdLst
+    for sld_id in list(xml_slides):
+        rId = sld_id.get(qn("r:id"))
+        prs.part.drop_rel(rId)
+        xml_slides.remove(sld_id)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Convert a Markdown outline to a Beijing Xinghua .pptx."
@@ -74,24 +86,27 @@ def main() -> int:
         closing_title=get_company_info()["company_name"],
     )
 
-    # Copy template → temp, then strip existing slides.  python-pptx has no
-    # "create from scratch with theme" mode, so we copy the master, drop its
-    # slides, and add ours.
+    # Copy template → temp (cached to ~/.cache/bjxh-ppt for performance).
+    cache_dir = Path.home() / ".cache" / "bjxh-ppt"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cached = cache_dir / "template.pptx"
+    template_mtime = template_path.stat().st_mtime
+    if not cached.exists() or cached.stat().st_mtime != template_mtime:
+        shutil.copy2(str(template_path), str(cached))
+        import os as _os
+        _os.utime(str(cached), (template_mtime, template_mtime))
+
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
         suffix=".pptx", delete=False, dir=tempfile.gettempdir()
     ) as tmp:
         tmp_path = Path(tmp.name)
-    shutil.copy2(str(template_path), str(tmp_path))
+    shutil.copy2(str(cached), str(tmp_path))
 
     prs = Presentation(str(tmp_path))
 
-    xml_slides = prs.slides._sldIdLst
-    for sld_id in list(xml_slides):
-        rId = sld_id.get(qn("r:id"))
-        prs.part.drop_rel(rId)
-        xml_slides.remove(sld_id)
+    _drop_all_slides(prs)
 
     for spec in pages:
         render_page(prs, spec, template_path)

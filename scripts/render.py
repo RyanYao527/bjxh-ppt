@@ -210,8 +210,12 @@ def render_page(
                 p = tf.paragraphs[0]
                 p.alignment = None
                 run = p.add_run()
-                company_name_en = get_company_info()["company_name_en"]
-                run.text = company_name_en if company_name_en else ""
+                company_info = get_company_info()
+                subtitle_text = (
+                    spec.subtitle
+                    or company_info.get("company_name_en", "")
+                )
+                run.text = subtitle_text
                 run.font.name = "Arial"
                 run.font.size = Pt(18)
                 run.font.color.theme_color = MSO_THEME_COLOR_INDEX.BACKGROUND_1
