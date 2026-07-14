@@ -1,6 +1,33 @@
 # Changelog
 
-## v1.2 (unreleased)
+## v2.0 (2026-07-14)
+
+### Added
+- **排版引擎** (`layout_utils.py`): 动态字号、占位符清理、内容感知版式选择、标题智能截断
+- **新模板适配**: 5.27定稿-北京兴华标准化模板 (59 slides, 80 layouts, 10 mapped)
+- 图表版式支持 (`图表-1`, `图表-2`) + 数据关键词自动检测
+- `inspect_placeholders.py`: dump 版式 placeholder 元数据
+- E2E smoke test in CI
+- `requirements.txt` (production deps)
+
+### Changed
+- **模块拆分**: `from_outline.py` 638→45行 (→ `parse.py`/`render.py`/`cli.py`)
+- **默认版式**: `无图分段-3项` → `标题页-空白` (匹配模板实际使用)
+- **默认字号基线**: 16pt → 14pt (匹配新模板统计)
+- **TOC 行为**: >3章节自动禁用目录 (新模板限制)
+- config.py: legacy 路径改为 5.27 模板
+- SKILL.md: 更新模板规格为 5.27 定稿
+
+### Fixed
+- `render_page()` 引用 `main()` 局部变量 (改为参数传入)
+- 空占位符残留 "单击此处添加文本" (自动清理)
+- logo zip 提取增加错误处理
+- BJH 正则增加 `BJH`/`B.J.H` 匹配
+- suggest_layout 运行时校验 PLACEHOLDER_MAP
+
+---
+
+## v1.2
 
 ### Added
 - `scripts/shared.py`: shared `apply_minimal_formatting` utility (removes `sys.path` hack).
