@@ -13,7 +13,13 @@ from pathlib import Path
 import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
-from render import find_layout, find_placeholder, set_placeholder_text  # noqa: E402
+from render import (  # noqa: E402
+    PLACEHOLDER_MAP,
+    find_layout,
+    find_placeholder,
+    render_page,
+    set_placeholder_text,
+)
 from parse import PageSpec  # noqa: E402
 from pptx import Presentation  # noqa: E402
 
@@ -98,7 +104,6 @@ def test_set_placeholder_text_returns_false_for_none() -> None:
 def test_render_page_unknown_layout_raises(prs: Presentation) -> None:
     spec = PageSpec(kind="content", title="Test", layout="不存在的版式")
     with pytest.raises(SystemExit, match="layout.*not found"):
-        from render import render_page
         render_page(prs, spec, template_path="/nonexistent.pptx")
 
 
@@ -107,13 +112,11 @@ def test_render_page_layout_not_in_map_raises(prs: Presentation) -> None:
     # PLACEHOLDER_MAP (e.g. the default 'Blank' or 'Title Slide' layout).
     for master in prs.slide_masters:
         for layout in master.slide_layouts:
-            from render import PLACEHOLDER_MAP
             if layout.name not in PLACEHOLDER_MAP:
                 spec = PageSpec(
                     kind="content", title="Test", layout=layout.name
                 )
                 with pytest.raises(SystemExit, match="not in PLACEHOLDER_MAP"):
-                    from render import render_page
                     render_page(prs, spec, template_path="/nonexistent.pptx")
                 return
     pytest.skip("All default layouts are in PLACEHOLDER_MAP")
