@@ -1,9 +1,21 @@
 # Normalize text files to LF line endings on checkout
 * text=auto eol=lf
 
-# Binary files should not be modified
+# Binary files
 *.pptx binary
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
+*.preview.html binary
+
+# Text files (force LF)
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.bat text eol=lf
+*.cfg text eol=lf

@@ -72,6 +72,7 @@ def get_company_info() -> dict[str, str]:
     company: dict[str, Any] = cfg.get("company", {})
     return {
         "company_name": company.get("company_name", "北京兴华集团"),
+        "company_name_en": company.get("company_name_en", ""),
         "phone": company.get("phone", ""),
         "fax": company.get("fax", ""),
         "address": company.get("address", ""),

@@ -210,7 +210,8 @@ def render_page(
                 p = tf.paragraphs[0]
                 p.alignment = None
                 run = p.add_run()
-                run.text = "BEIJING XINGHUA GROUP"
+                company_name_en = get_company_info()["company_name_en"]
+                run.text = company_name_en if company_name_en else ""
                 run.font.name = "Arial"
                 run.font.size = Pt(18)
                 run.font.color.theme_color = MSO_THEME_COLOR_INDEX.BACKGROUND_1
@@ -413,5 +414,5 @@ def render_page(
     clear_unused_placeholders(slide, used_idxs)
 
     # -- speaker notes (cover + closing only) -------------------------------
-    if spec.note and spec.kind in ("cover", "closing"):
+    if spec.note:
         slide.notes_slide.notes_text_frame.text = spec.note
