@@ -97,9 +97,29 @@ PLACEHOLDER_MAP: dict[str, dict] = {
         "body_idx": 17,  # left text + right images
     },
 
-    # ---- chart layouts (图表-1 through 图表-8) ----
+    # ---- chart layouts ----
     "图表-1": {"main_title_idx": 11, "subtitle_idx": 12},
     "图表-2": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-4": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-5": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-6": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-7": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-8": {"main_title_idx": 11, "subtitle_idx": 12},
+
+    # ---- logic/flow layouts ----
+    "逻辑-2":  {"main_title_idx": 11, "subtitle_idx": 12},
+    "逻辑-3":  {"main_title_idx": 11, "subtitle_idx": 12},
+    "逻辑-4":  {"main_title_idx": 11, "subtitle_idx": 12},
+
+    # ---- architecture layouts ----
+    "架构图-2": {"main_title_idx": 11, "subtitle_idx": 12},
+    "架构图-3": {"main_title_idx": 11, "subtitle_idx": 12},
+
+    # ---- more image+text variants ----
+    "有图分段式-1":  {"main_title_idx": 11, "subtitle_idx": 12, "body_idx": 22},
+    "有图分段式-3":  {"main_title_idx": 11, "subtitle_idx": 12},
+    "有图分段式-16": {"main_title_idx": 11, "subtitle_idx": 12, "body_idx": 14},
+    "有图分段式-8":  {"main_title_idx": 11, "subtitle_idx": 12, "body_idx": 17},
 }
 
 
@@ -413,6 +433,13 @@ def render_page(
                 f"Warning: could not extract logo from template: {exc}",
                 file=sys.stderr,
             )
+
+    # -- embed image (from > image: directive) ----------------------------
+    if spec.image and Path(spec.image).exists():
+        slide.shapes.add_picture(
+            str(spec.image), Inches(0.94), Inches(5.0),
+            height=Inches(1.5),
+        )
 
     # -- clear unused placeholder residue ----------------------------------
     clear_unused_placeholders(slide, used_idxs)

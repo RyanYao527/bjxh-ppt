@@ -62,21 +62,27 @@ def calc_safe_font_size(
     return min_pt
 
 
-# Content-aware layout categories (all names must match PLACEHOLDER_MAP).
-# Only layouts in PLACEHOLDER_MAP are eligible for auto-selection.
-_STRUCTURED = ["无图分段-3项", "无图分段-4项", "无图分段-5项"]
-_TEXT = ["标题页-空白", "2_标题页-空白"]
-_CHART = ["图表-1", "图表-2"]
-_IMAGE_TEXT = ["有图分段式-16", "有图分段式-8"]
+# Content-aware layout categories — read from JSON so behaviour can be
+# tuned without touching code.
+import json as _json
+from pathlib import Path as _Path
 
-# Keywords that hint at content type
-_DATA_KEYWORDS = [
+_cfg_path = _Path(__file__).parent / "layout_categories.json"
+_cfg: dict = {}
+if _cfg_path.exists():
+    try:
+        _cfg = _json.loads(_cfg_path.read_text(encoding="utf-8"))
+    except (_json.JSONDecodeError, OSError):
+        pass
+
+_STRUCTURED: list[str] = _cfg.get("structured", ["无图分段-3项", "无图分段-4项", "无图分段-5项"])
+_TEXT: list[str] = _cfg.get("text", ["标题页-空白", "2_标题页-空白"])
+_CHART: list[str] = _cfg.get("chart", ["图表-1", "图表-2"])
+_IMAGE_TEXT: list[str] = _cfg.get("image_text", ["有图分段式-16", "有图分段式-8"])
+_DATA_KEYWORDS: list[str] = _cfg.get("data_keywords", [
     "%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
     "亿", "万", "倍", "个百分点", "统计", "趋势",
-    # Audit-specific data indicators
-    "累计投入", "约", "万元", "亿元", "试点", "覆盖率",
-    "处理", "份", "个", "识别", "节约", "提升",
-]
+])
 
 
 def _validate_layout(name: str) -> str:

@@ -207,6 +207,37 @@ def check_edit_grey_color(prs: Presentation, issues: list[str]) -> None:
                         )
 
 
+def check_theme_color_compliance(prs: Presentation, issues: list[str]) -> None:
+    """Flag hardcoded RGB colors that should use theme colors instead."""
+    for s_idx, slide in enumerate(prs.slides, 1):
+        for shape in slide.shapes:
+            if not shape.has_text_frame:
+                continue
+            for para in shape.text_frame.paragraphs:
+                for run in para.runs:
+                    if not run.text or not run.text.strip():
+                        continue
+                    try:
+                        color = run.font.color
+                        if color is None:
+                            continue
+                        # Theme colors have .theme_color; RGB colors have .rgb
+                        if hasattr(color, "theme_color") and color.theme_color is not None:
+                            continue  # OK — uses theme color
+                        if hasattr(color, "rgb") and color.rgb is not None:
+                            rgb = tuple(color.rgb)  # type: ignore[arg-type]
+                            # Allow white (#FFFFFF) and the edit-note grey
+                            if rgb in ((0xFF, 0xFF, 0xFF), (0x44, 0x54, 0x69)):
+                                continue
+                            issues.append(
+                                f"[THEME-COLOR] slide {s_idx}: hardcoded RGB "
+                                f"#{rgb[0]:02X}{rgb[1]:02X}{rgb[2]:02X} "
+                                f"in '{run.text[:40]}'. Prefer theme colors."
+                            )
+                    except (AttributeError, TypeError):
+                        pass
+
+
 def check_visual_element_per_slide(prs: Presentation, issues: list[str]) -> None:
     """A page is "too thin" if it has very few shapes AND they're all text.
 
@@ -249,6 +280,7 @@ def main() -> int:
     check_essential_placeholders_filled(prs, issues)
     check_bjh_residue(prs, issues)
     check_edit_grey_color(prs, issues)
+    check_theme_color_compliance(prs, issues)
     check_visual_element_per_slide(prs, issues)
 
     if issues:
