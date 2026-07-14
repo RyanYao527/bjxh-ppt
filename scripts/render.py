@@ -87,7 +87,17 @@ PLACEHOLDER_MAP: dict[str, dict] = {
         "seg_body_idxs":  [22, 24, 26, 28, 30],
     },
 
-    # ---- chart layouts (new template has 图表-1 through 图表-8) ----
+    # ---- image+text layouts (有图分段式) ----
+    "有图分段式-16": {
+        "main_title_idx": 11, "subtitle_idx": 12,
+        "body_idx": 14,  # large text area (11.4\"×2.8\")
+    },
+    "有图分段式-8": {
+        "main_title_idx": 11, "subtitle_idx": 12,
+        "body_idx": 17,  # left text + right images
+    },
+
+    # ---- chart layouts (图表-1 through 图表-8) ----
     "图表-1": {"main_title_idx": 11, "subtitle_idx": 12},
     "图表-2": {"main_title_idx": 11, "subtitle_idx": 12},
 }
