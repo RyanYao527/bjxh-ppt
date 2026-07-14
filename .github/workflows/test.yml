@@ -30,7 +30,6 @@ jobs:
       - name: QA — xxb_report
         run: python scripts/qa.py examples/xxb_2025_2026_report.pptx
 
-      - name: E2E — regenerate audit_demo from outline
-        run: |
-          python scripts/from_outline.py examples/audit_demo.md /tmp/test_audit_demo.pptx examples/audit_demo.pptx --no-chapter-covers 2>&1 || echo "(template-dependent; expected to fail in CI)"
-          if [ -f /tmp/test_audit_demo.pptx ]; then python scripts/qa.py /tmp/test_audit_demo.pptx; fi
+      - name: E2E regenerate (skipped on CI, requires master template)
+        if: false
+        run: python scripts/from_outline.py examples/audit_demo.md /tmp/test.pptx examples/audit_demo.pptx --no-chapter-covers

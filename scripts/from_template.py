@@ -29,11 +29,6 @@ from render import find_layout
 from shared import apply_minimal_formatting
 
 
-# 2026 兴华模板 — 标准 12 个常用版式（详见 SKILL.md §6.1）
-STANDARD_OPENING: str = "主题-封面,主题-目录页,标题页-空白"
-STANDARD_CLOSING: str = "主题-封底页"
-
-
 def parse_layout_list(raw: str) -> list[str]:
     return [s.strip() for s in raw.split(",") if s.strip()]
 
