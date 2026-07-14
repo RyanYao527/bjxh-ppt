@@ -127,7 +127,8 @@ def extract_images(prs: Presentation, out_dir: Path) -> list[dict[str, object]]:
     return extracted
 
 
-def table_to_data(table: Table) -> list[list[str]]:
+def table_to_data(table) -> list[list[str]]:  # type: ignore[no-untyped-def]
+    # table is pptx.table.Table; use Any to avoid import-only dep
     """Convert python-pptx Table to 2D list of strings."""
     data: list[list[str]] = []
     for row in table.rows:
