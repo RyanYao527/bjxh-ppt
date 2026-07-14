@@ -47,13 +47,9 @@ def resolve_template_path() -> str:
     if cfg_path and Path(cfg_path).exists():
         return cfg_path
 
-    # Legacy fallback — the original author's local path for the current
-    # (5.27 定稿) template.  Only activates when the path actually exists.
+    # Legacy fallback.  Only activates when the path actually exists.
     # Other users: configure via BJXH_TEMPLATE env var or config.json.
-    legacy: str = (
-        r"C:\工作\04-总结与报告\2026年工作\2026合伙人大会"
-        r"\5.27定稿-北京兴华标准化模板20260514修改-5.27修改客户.pptx"
-    )
+    legacy: str = ""
     if Path(legacy).exists():
         return legacy
 
