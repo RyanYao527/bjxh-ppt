@@ -21,6 +21,16 @@ jobs:
       - name: Install dependencies
         run: pip install python-pptx lxml pytest
 
+      - name: Lint (ruff)
+        run: |
+          pip install ruff
+          ruff check scripts/ tests/ --ignore=E501,F811
+
+      - name: Type check (mypy)
+        run: |
+          pip install mypy
+          mypy scripts/ --ignore-missing-imports --check-untyped-defs || true
+
       - name: Run tests
         run: python -m pytest tests/ -v
 

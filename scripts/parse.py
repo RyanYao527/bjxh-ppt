@@ -45,6 +45,7 @@ class PageSpec:
     layout: str
     bullets: list[str] = field(default_factory=list)
     note: str = ""
+    subtitle: str = ""  # cover subtitle (from > subtitle: directive)
     toc_page_numbers: list[str] = field(default_factory=list)
 
     def __repr__(self) -> str:
@@ -182,6 +183,8 @@ def parse_outline(
                 current = replace(current, layout=val)
             elif key == "note":
                 current = replace(current, note=val)
+            elif key == "subtitle":
+                current = replace(current, subtitle=val)
             else:
                 print(
                     f"Warning: line {line_number}: unknown directive "
@@ -202,9 +205,9 @@ def parse_outline(
     flush()
 
     # ---- post-processing: insert TOC ----------------------------------
-    # New template (5.27) TOC only supports 3 chapters.  Auto-disable if
-    # there are more, rather than silently dropping entries.
-    TOC_MAX_CHAPTERS = 3
+    # Read TOC capacity from config; default to template-specific limit.
+    from config import _find_config
+    TOC_MAX_CHAPTERS = _find_config().get("toc_max_chapters", 3)
     if add_toc and len(h2_titles) > TOC_MAX_CHAPTERS:
         print(
             f"Warning: {len(h2_titles)} chapters but TOC layout only supports "
