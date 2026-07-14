@@ -38,19 +38,31 @@ from shared import apply_minimal_formatting
 # and re-verify every entry here.  Do not guess.
 
 PLACEHOLDER_MAP: dict[str, dict] = {
+    # ---- cover / TOC / closing (same idx structure as old template) ----
     "主题-封面": {
         "main_title_idx": 10,
         "subtitle_idx":   11,
     },
     "主题-目录页": {
-        # 4 chapter-title slots (left column) + 4 page-number slots (right column).
-        # The "English sub-title" and "tiny page number" slots are left empty.
-        # Maximum 4 chapters; switch to a richer TOC layout beyond that.
-        "item_idxs":     [12, 21, 23, 25],
-        "item_sub_idxs": [20, 22, 24, 26],
-        "page_idxs":     [27, 29, 31, 33],
+        # New template (5.27 定稿): 3 chapter-title slots (idx 12,21,23)
+        # and 2 page-number slots (idx 27,29).  Sub-title and alternate
+        # idxs are left empty.
+        # Maximum 3 chapters in TOC with this layout.
+        "item_idxs":     [12, 21, 23],
+        "item_sub_idxs": [20, 22, 24],
+        "page_idxs":     [27, 29],
     },
+    "自定义版式": {
+        "main_title_idx":   11,
+        "slide_number_idx": 10,
+    },
+
+    # ---- chapter / content (same placeholder idx as old template) ----
     "标题页-空白": {
+        "main_title_idx": 11,
+        "subtitle_idx":   12,
+    },
+    "2_标题页-空白": {
         "main_title_idx": 11,
         "subtitle_idx":   12,
     },
@@ -58,44 +70,27 @@ PLACEHOLDER_MAP: dict[str, dict] = {
         "main_title_idx": 11,
         "subtitle_idx":   12,
     },
-    "1_主题-过渡页": {
-        "main_title_idx":       13,
-        "transition_part_idx":  11,
-        "transition_num_idx":   10,
-    },
-    "文字模板1": {
-        "main_title_idx": 11,
-        "subtitle_idx":   12,
-        "body_idx":       13,
-    },
+
+    # ---- structured segment layouts ----
     "无图分段-3项": {
-        "main_title_idx": 11,
-        "subtitle_idx":   12,
+        "main_title_idx": 11, "subtitle_idx": 12,
         "seg_title_idxs": [15, 16, 17],
         "seg_body_idxs":  [18, 19, 20],
     },
     "无图分段-4项": {
-        "main_title_idx": 11,
-        "subtitle_idx":   12,
+        "main_title_idx": 11, "subtitle_idx": 12,
         "seg_title_idxs": [27, 29, 31, 33],
         "seg_body_idxs":  [28, 30, 32, 34],
     },
     "无图分段-5项": {
-        "main_title_idx": 11,
-        "subtitle_idx":   12,
+        "main_title_idx": 11, "subtitle_idx": 12,
         "seg_title_idxs": [21, 23, 25, 27, 29],
         "seg_body_idxs":  [22, 24, 26, 28, 30],
     },
-    "主题-封底页": {
-        "main_title_idx":   10,
-        "slide_number_idx": 4,   # filled by PowerPoint, never written by code
-    },
-    "自定义版式": {
-        # The preferred closing layout (layout #111).  Code must reposition
-        # the title placeholder and add contact info + logo.
-        "main_title_idx":   11,
-        "slide_number_idx": 10,
-    },
+
+    # ---- chart layouts (new template has 图表-1 through 图表-8) ----
+    "图表-1": {"main_title_idx": 11, "subtitle_idx": 12},
+    "图表-2": {"main_title_idx": 11, "subtitle_idx": 12},
 }
 
 

@@ -25,7 +25,7 @@ DIRECTIVE_RE: re.Pattern[str] = re.compile(r"^>\s*(\w+):\s*(.+?)\s*$")
 # H3 default layout. 文字模板1 has too few placeholders — qa.py would flag
 # content pages as THIN-PAGE.  无图分段-3项 provides structured sections while
 # passing the visual-element check.
-DEFAULT_CONTENT_LAYOUT: str = "无图分段-3项"
+DEFAULT_CONTENT_LAYOUT: str = "标题页-空白"
 
 
 # ---- PageSpec -------------------------------------------------------------

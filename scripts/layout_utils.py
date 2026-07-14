@@ -67,7 +67,8 @@ def calc_safe_font_size(
 # Content-aware layout categories (all names must match PLACEHOLDER_MAP).
 # Only layouts in PLACEHOLDER_MAP are eligible for auto-selection.
 _STRUCTURED = ["无图分段-3项", "无图分段-4项", "无图分段-5项"]
-_TEXT = ["文字模板1"]
+_TEXT = ["标题页-空白", "2_标题页-空白"]
+_CHART = ["图表-1", "图表-2"]
 
 # Keywords that hint at content type
 _DATA_KEYWORDS = ["%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
@@ -90,6 +91,12 @@ def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = 
     """
     used = used_layouts or frozenset()
     text = " ".join(bullets)
+
+    # Data-heavy bullets → try chart layout first
+    if any(kw in text for kw in _DATA_KEYWORDS) and len(bullets) <= 6:
+        for c in _CHART:
+            if c not in used:
+                return c
 
     # Assemble all available non-structured variants for rotation
     all_candidates = list(_STRUCTURED)
