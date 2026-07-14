@@ -20,9 +20,7 @@ from typing import Any
 from pptx import Presentation
 from pptx.slide import Slide, Slides  # noqa: F401
 
-
-def emu_to_inches(emu: int) -> float:
-    return round(emu / 914400, 3)
+from shared import emu_to_inches
 
 
 def main(template_path: str, output_path: str) -> None:

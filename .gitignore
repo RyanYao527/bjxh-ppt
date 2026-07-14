@@ -34,3 +34,4 @@ scripts/config.json
 # Assets themselves are committed; the generators are not.
 tools/
 extract.log
+.coverage

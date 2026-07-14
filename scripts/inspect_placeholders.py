@@ -19,11 +19,7 @@ from pathlib import Path
 
 from pptx import Presentation
 
-
-def emu_to_in(emu: int | None) -> float | None:
-    if emu is None:
-        return None
-    return round(emu / 914400, 3)
+from shared import emu_to_inches
 
 
 def dump_layouts(template_path: str, filter_name: str | None = None) -> list[dict]:
@@ -45,10 +41,10 @@ def dump_layouts(template_path: str, filter_name: str | None = None) -> list[dic
                         "type": str(phf.type),
                         "name": ph.name,
                         "shape_type": str(ph.shape_type),
-                        "left_in": emu_to_in(ph.left),
-                        "top_in": emu_to_in(ph.top),
-                        "width_in": emu_to_in(ph.width),
-                        "height_in": emu_to_in(ph.height),
+                        "left_in": emu_to_inches(ph.left) if ph.left is not None else None,
+                        "top_in": emu_to_inches(ph.top) if ph.top is not None else None,
+                        "width_in": emu_to_inches(ph.width) if ph.width is not None else None,
+                        "height_in": emu_to_inches(ph.height) if ph.height is not None else None,
                         "has_text_frame": ph.has_text_frame,
                     }
                 )

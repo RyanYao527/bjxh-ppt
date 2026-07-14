@@ -19,11 +19,8 @@ import sys
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.util import Emu  # noqa: F401
 
-
-def emu_to_in(v: int | None) -> float:
-    return v / 914400 if v is not None else 0.0
+from shared import emu_to_inches
 
 
 def estimate_overflow(
@@ -118,10 +115,10 @@ h2 { font-size: 16px; margin: 0 0 8px; padding: 8px 12px; background: #1f3a5f; c
                 any_text = True
             idx: int = ph.placeholder_format.idx
             pos: str = (
-                f"({emu_to_in(ph.left):.2f}, {emu_to_in(ph.top):.2f})"
+                f"({emu_to_inches(ph.left):.2f}, {emu_to_inches(ph.top):.2f})"
             )
             size: str = (
-                f"{emu_to_in(ph.width):.2f}×{emu_to_in(ph.height):.2f}"
+                f"{emu_to_inches(ph.width):.2f}×{emu_to_inches(ph.height):.2f}"
             )
             # font size: take from first run
             font_pt: int = 16
@@ -137,12 +134,12 @@ h2 { font-size: 16px; margin: 0 0 8px; padding: 8px 12px; background: #1f3a5f; c
             warn: str = ""
             if stripped:
                 cpl, lines = estimate_overflow(
-                    stripped, emu_to_in(ph.width), font_pt
+                    stripped, emu_to_inches(ph.width), font_pt
                 )
                 line_capacity: int = max(
                     1,
                     int(
-                        (emu_to_in(ph.height) * 72)
+                        (emu_to_inches(ph.height) * 72)
                         / max(0.1, font_pt * 1.4)
                     ),
                 )

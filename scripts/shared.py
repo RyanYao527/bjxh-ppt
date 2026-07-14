@@ -11,6 +11,14 @@ from typing import TYPE_CHECKING
 
 from pptx.util import Pt
 
+
+def emu_to_inches(emu: int | None) -> float:
+    """Convert EMU (English Metric Units) to inches.
+
+    Returns 0.0 when *emu* is None (convenient for display / layout code).
+    """
+    return emu / 914400 if emu is not None else 0.0
+
 if TYPE_CHECKING:
     from pptx.slide import Slide
 
