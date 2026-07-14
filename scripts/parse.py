@@ -11,6 +11,8 @@ import re
 import sys
 from dataclasses import dataclass, field, replace
 
+from layout_utils import suggest_layout
+
 
 # ---- regex patterns -------------------------------------------------------
 
@@ -87,10 +89,23 @@ def parse_outline(
     h2_titles: list[str] = []
     cover_added: bool = False
     line_number: int = 0
+    # Layout rotation tracker — last 3 used layouts are excluded from suggestion
+    recent_layouts: list[str] = []
 
     def flush() -> None:
-        nonlocal current
+        nonlocal current, recent_layouts
         if current is not None:
+            # Auto-select layout if still on default (no explicit > layout: directive)
+            if current.kind == "content" and current.layout == DEFAULT_CONTENT_LAYOUT:
+                used_set = frozenset(recent_layouts[-3:])
+                current = replace(
+                    current,
+                    layout=suggest_layout(current.bullets, used_layouts=used_set),
+                )
+            # Track for rotation
+            recent_layouts.append(current.layout)
+            if len(recent_layouts) > 5:
+                recent_layouts = recent_layouts[-5:]
             pages.append(current)
             current = None
 

@@ -22,6 +22,7 @@ from pptx.oxml.ns import qn
 from pptx.util import Inches, Pt
 
 from config import get_company_info
+from layout_utils import calc_safe_font_size, clear_unused_placeholders, extract_segment_title
 from parse import PageSpec
 from shared import apply_minimal_formatting
 
@@ -182,11 +183,13 @@ def render_page(
     slide = prs.slides.add_slide(layout)
     apply_minimal_formatting(slide)
     mp: dict = PLACEHOLDER_MAP[spec.layout]
+    used_idxs: set[int] = set()
 
     # -- cover --------------------------------------------------------------
     if spec.kind == "cover":
         # Main title idx=10: 66 pt bold (spec v3 — must visually overlap the
         # "BEIJING XINGHUA" watermark at y=2.20-3.21 in.)
+        used_idxs.add(mp["main_title_idx"])
         set_placeholder_text(
             find_placeholder(slide, mp["main_title_idx"]),
             spec.title,
@@ -195,6 +198,7 @@ def render_page(
         )
         # Subtitle idx=11: 18 pt single-line English org name on white
         if mp.get("subtitle_idx") is not None:
+            used_idxs.add(mp["subtitle_idx"])
             sub_ph = find_placeholder(slide, mp["subtitle_idx"])
             if sub_ph is not None and sub_ph.has_text_frame:
                 tf = sub_ph.text_frame
@@ -217,11 +221,13 @@ def render_page(
                 f"table of contents.\n"
             )
         for i, idx in enumerate(mp["item_idxs"]):
+            used_idxs.add(idx)
             text = spec.bullets[i] if i < len(spec.bullets) else ""
-            set_placeholder_text(
-                find_placeholder(slide, idx), text, size_pt=16, bold=False
-            )
+            item_ph = find_placeholder(slide, idx)
+            safe_toc_size = calc_safe_font_size(item_ph, text, max_pt=14, min_pt=8) if item_ph else 14
+            set_placeholder_text(item_ph, text, size_pt=safe_toc_size, bold=False)
         for i, idx in enumerate(mp["page_idxs"]):
+            used_idxs.add(idx)
             if i < len(spec.bullets):
                 page_num = (
                     spec.toc_page_numbers[i]
@@ -229,25 +235,19 @@ def render_page(
                     else str(i + 1)
                 )
                 set_placeholder_text(
-                    find_placeholder(slide, idx), page_num, size_pt=16, bold=False
+                    find_placeholder(slide, idx), page_num, size_pt=12, bold=False
                 )
 
     # -- chapter divider ----------------------------------------------------
     elif spec.kind == "chapter":
         if spec.layout == "1_主题-过渡页":
-            set_placeholder_text(
-                find_placeholder(slide, mp["main_title_idx"]),
-                spec.title,
-                size_pt=28,
-                bold=True,
-            )
+            ch_ph = find_placeholder(slide, mp["main_title_idx"])
+            safe_ch = calc_safe_font_size(ch_ph, spec.title, max_pt=28, min_pt=16) if ch_ph else 28
+            set_placeholder_text(ch_ph, spec.title, size_pt=safe_ch, bold=True)
         else:
-            set_placeholder_text(
-                find_placeholder(slide, mp["main_title_idx"]),
-                spec.title,
-                size_pt=24,
-                bold=True,
-            )
+            ch_ph = find_placeholder(slide, mp["main_title_idx"])
+            safe_ch = calc_safe_font_size(ch_ph, spec.title, max_pt=24, min_pt=14) if ch_ph else 24
+            set_placeholder_text(ch_ph, spec.title, size_pt=safe_ch, bold=True)
             if mp.get("subtitle_idx") is not None:
                 set_placeholder_text(
                     find_placeholder(slide, mp["subtitle_idx"]),
@@ -258,51 +258,37 @@ def render_page(
 
     # -- content page -------------------------------------------------------
     elif spec.kind == "content":
-        set_placeholder_text(
-            find_placeholder(slide, mp["main_title_idx"]),
-            spec.title,
-            size_pt=20,
-            bold=True,
-        )
+        title_ph = find_placeholder(slide, mp["main_title_idx"])
+        if title_ph is not None:
+            used_idxs.add(mp["main_title_idx"])
+            safe_title_size = calc_safe_font_size(title_ph, spec.title, max_pt=20, min_pt=12)
+            set_placeholder_text(title_ph, spec.title, size_pt=safe_title_size, bold=True)
         if mp.get("subtitle_idx") is not None:
-            set_placeholder_text(
-                find_placeholder(slide, mp["subtitle_idx"]),
-                spec.note or "",
-                size_pt=14,
-                bold=False,
-            )
+            sub_ph = find_placeholder(slide, mp["subtitle_idx"])
+            if sub_ph is not None:
+                used_idxs.add(mp["subtitle_idx"])
+                set_placeholder_text(sub_ph, spec.note or "", size_pt=14, bold=False)
 
         # Structured segment layouts (无图分段-3/4/5项)
         if "seg_title_idxs" in mp and spec.bullets:
             for i, idx in enumerate(mp["seg_title_idxs"]):
+                used_idxs.add(idx)
                 if i < len(spec.bullets):
                     bullet = spec.bullets[i]
-                    # Split on first CJK / ASCII separator for the card title
-                    seg_title = bullet
-                    for sep in ["、", ":", "：", ".", "。", ",", "，"]:
-                        if sep in bullet:
-                            seg_title = bullet.split(sep, 1)[0]
-                            break
-                    if len(seg_title) > 8:
-                        seg_title = bullet[:6]
-                    set_placeholder_text(
-                        find_placeholder(slide, idx),
-                        seg_title,
-                        size_pt=16,
-                        bold=True,
-                    )
+                    seg_title = extract_segment_title(bullet)
+                    seg_title_ph = find_placeholder(slide, idx)
+                    safe_size = calc_safe_font_size(seg_title_ph, seg_title, max_pt=16, min_pt=10) if seg_title_ph else 16
+                    set_placeholder_text(seg_title_ph, seg_title, size_pt=safe_size, bold=True)
                 else:
                     set_placeholder_text(
                         find_placeholder(slide, idx), "", size_pt=16, bold=False
                     )
             for i, idx in enumerate(mp["seg_body_idxs"]):
+                used_idxs.add(idx)
                 if i < len(spec.bullets):
-                    set_placeholder_text(
-                        find_placeholder(slide, idx),
-                        spec.bullets[i],
-                        size_pt=14,
-                        bold=False,
-                    )
+                    body_ph = find_placeholder(slide, idx)
+                    safe_body_size = calc_safe_font_size(body_ph, spec.bullets[i], max_pt=14, min_pt=8) if body_ph else 14
+                    set_placeholder_text(body_ph, spec.bullets[i], size_pt=safe_body_size, bold=False)
                 else:
                     set_placeholder_text(
                         find_placeholder(slide, idx), "", size_pt=14, bold=False
@@ -357,6 +343,7 @@ def render_page(
     elif spec.kind == "closing":
         # Write title and reposition from template default (3.94, 3.01) in
         # to (3.94, 2.50) in — avoids 0.22 in overlap with the slogan textbox.
+        used_idxs.add(mp["main_title_idx"])
         title_ph = find_placeholder(slide, mp["main_title_idx"])
         set_placeholder_text(title_ph, spec.title, size_pt=40, bold=True)
 
@@ -417,6 +404,9 @@ def render_page(
                 f"Warning: could not extract logo from template: {exc}",
                 file=sys.stderr,
             )
+
+    # -- clear unused placeholder residue ----------------------------------
+    clear_unused_placeholders(slide, used_idxs)
 
     # -- speaker notes (cover + closing only) -------------------------------
     if spec.note and spec.kind in ("cover", "closing"):
