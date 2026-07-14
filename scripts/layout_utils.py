@@ -71,8 +71,6 @@ _CHART = ["图表-1", "图表-2"]
 # Keywords that hint at content type
 _DATA_KEYWORDS = ["%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
                   "亿", "万", "倍", "个百分点", "统计", "趋势"]
-_PROCESS_KEYWORDS = ["步骤", "流程", "阶段", "首先", "然后", "最后", "环节",
-                     "先后", "第一步", "第二步"]
 
 
 def _validate_layout(name: str) -> str:
@@ -127,7 +125,7 @@ def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = 
 
     if n <= 3:
         # Short pages: alternate between text and structured
-        if text_preferred and recent_layouts_structured(used) >= 2:
+        if text_preferred and sum(1 for lay in used if lay in _STRUCTURED) >= 2:
             return text_preferred[0]
         ordered = [lay for lay in candidates if "3项" in lay or lay in _TEXT]
     elif n == 4:
@@ -192,11 +190,6 @@ def extract_segment_title(bullet: str, max_chars: int = 8) -> str:
 
     # 4) Fallback: first N chars
     return bullet[:max_chars]
-
-
-def recent_layouts_structured(used: frozenset[str]) -> int:
-    """Count how many recently-used layouts are structured variants."""
-    return sum(1 for lay in used if lay in _STRUCTURED)
 
 
 def clear_unused_placeholders(slide: Any, used_idx_set: set[int]) -> None:
