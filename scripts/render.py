@@ -70,11 +70,6 @@ PLACEHOLDER_MAP: dict[str, dict] = {
         "main_title_idx": 11,
         "subtitle_idx":   12,
     },
-    "1_标题页-空白": {
-        "main_title_idx": 11,
-        "subtitle_idx":   12,
-    },
-
     # ---- structured segment layouts ----
     "无图分段-3项": {
         "main_title_idx": 11, "subtitle_idx": 12,

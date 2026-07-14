@@ -1,6 +1,6 @@
 ---
 name: bjxh-ppt
-description: 北京兴华会计师事务所内部 PPT 制作规范 — 基于 2026 合伙人大会精简版模板（8 页样例 + 111 个母版版式），中约束、.pptx 直出、Markdown 大纲输入。Use when the user asks for "按北京兴华规范做 PPT"、"兴华模板"、"公司统一 PPT 样式"、"审计/合伙人大会/工作汇报 PPT"、"兴华风格 PPT"、"内部汇报演示稿"。
+description: 北京兴华会计师事务所内部 PPT 制作规范 — 基于 5.27 定稿标准化模板（59 页样例 + 80 个母版版式），中约束、.pptx 直出、Markdown 大纲输入。Use when the user asks for "按北京兴华规范做 PPT"、"兴华模板"、"公司统一 PPT 样式"、"审计/合伙人大会/工作汇报 PPT"、"兴华风格 PPT"、"内部汇报演示稿"。
 ---
 
 # 北京兴华 PPT 制作规范 v1.2
