@@ -67,10 +67,16 @@ def calc_safe_font_size(
 _STRUCTURED = ["无图分段-3项", "无图分段-4项", "无图分段-5项"]
 _TEXT = ["标题页-空白", "2_标题页-空白"]
 _CHART = ["图表-1", "图表-2"]
+_IMAGE_TEXT = ["有图分段式-16", "有图分段式-8"]
 
 # Keywords that hint at content type
-_DATA_KEYWORDS = ["%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
-                  "亿", "万", "倍", "个百分点", "统计", "趋势"]
+_DATA_KEYWORDS = [
+    "%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
+    "亿", "万", "倍", "个百分点", "统计", "趋势",
+    # Audit-specific data indicators
+    "累计投入", "约", "万元", "亿元", "试点", "覆盖率",
+    "处理", "份", "个", "识别", "节约", "提升",
+]
 
 
 def _validate_layout(name: str) -> str:
@@ -107,11 +113,13 @@ def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = 
             if c not in used:
                 return _validate_layout(c)
 
-    # Assemble all available non-structured variants for rotation
+    # Assemble all available variants for rotation
     all_candidates = list(_STRUCTURED)
-    # Insert text layouts occasionally for variety
+    # Insert text and image-text layouts for variety
     if len(bullets) <= 3:
-        all_candidates = _TEXT + all_candidates
+        all_candidates = _TEXT + _IMAGE_TEXT + all_candidates
+    else:
+        all_candidates = all_candidates + _IMAGE_TEXT
 
     # Exclude recently-used layouts
     candidates = [lay for lay in all_candidates if lay not in used]
