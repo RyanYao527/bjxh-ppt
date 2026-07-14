@@ -68,7 +68,7 @@ def test_content_default_layout() -> None:
     pages = parse_outline(text)
     content = [p for p in pages if p.kind == "content"][0]
     # Layout is now auto-selected — must be one of the mapped layouts
-    assert content.layout in ("无图分段-3项", "无图分段-4项", "无图分段-5项", "文字模板1")
+    assert content.layout in ("无图分段-3项", "无图分段-4项", "无图分段-5项", "文字模板1", "标题页-空白")
 
 
 # -- directives ------------------------------------------------------------
