@@ -10,8 +10,6 @@ from __future__ import annotations
 import sys as _sys
 from typing import Any
 
-from pptx.util import Pt
-
 from shared import emu_to_inches
 
 
@@ -54,10 +52,10 @@ def calc_safe_font_size(
     char_w_ratio = estimated_char_width_pt(text)
 
     for size in range(max_pt, min_pt - 1, -1):
-        char_width_in = (size / 72) * char_w_ratio
+        char_width_in = (size / 72) * char_w_ratio * 1.10  # +10% safety margin
         chars_per_line = max(1, int(box_w / char_width_in))
-        lines_needed = -(-len(text) // chars_per_line)  # ceil division
-        line_height_in = (size / 72) * line_spacing
+        lines_needed = -(-len(text) // chars_per_line)
+        line_height_in = (size / 72) * line_spacing * 1.10
         lines_fit = max(1, int(box_h / line_height_in))
         if lines_needed <= lines_fit:
             return size
@@ -75,6 +73,19 @@ _DATA_KEYWORDS = ["%", "增长", "下降", "占比", "同比", "环比", "数据
                   "亿", "万", "倍", "个百分点", "统计", "趋势"]
 _PROCESS_KEYWORDS = ["步骤", "流程", "阶段", "首先", "然后", "最后", "环节",
                      "先后", "第一步", "第二步"]
+
+
+def _validate_layout(name: str) -> str:
+    """Ensure *name* is actually in PLACEHOLDER_MAP, falling back safely."""
+    from render import PLACEHOLDER_MAP  # avoid circular import at module level
+    if name in PLACEHOLDER_MAP:
+        return name
+    fallback = "标题页-空白"
+    _sys.stderr.write(
+        f"Warning: layout '{name}' not in PLACEHOLDER_MAP, "
+        f"falling back to '{fallback}'.\n"
+    )
+    return fallback
 
 
 def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = None) -> str:
@@ -96,7 +107,7 @@ def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = 
     if any(kw in text for kw in _DATA_KEYWORDS) and len(bullets) <= 6:
         for c in _CHART:
             if c not in used:
-                return c
+                return _validate_layout(c)
 
     # Assemble all available non-structured variants for rotation
     all_candidates = list(_STRUCTURED)
@@ -127,7 +138,25 @@ def suggest_layout(bullets: list[str], *, used_layouts: frozenset[str] | None = 
         ordered = []
 
     fallback = ordered or structured_preferred or text_preferred or candidates
-    return fallback[0]
+    return _validate_layout(fallback[0])
+
+
+def truncate_title(title: str, max_chars: int = 14) -> tuple[str, str]:
+    """Truncate a long title for the narrow 3.87\"×0.54\" title placeholder.
+
+    Returns (display_title, overflow_note).  *overflow_note* is the full
+    original title (or empty string) so it can be saved as a speaker note
+    or subtitle.
+    """
+    if len(title) <= max_chars:
+        return title, ""
+    # Try to break at a natural separator
+    for sep in ["：", ":", "——", "——", "，", ","]:
+        idx = title.find(sep)
+        if 4 <= idx <= max_chars:
+            return title[:idx], title
+    # Hard truncation
+    return title[:max_chars], title
 
 
 def extract_segment_title(bullet: str, max_chars: int = 8) -> str:

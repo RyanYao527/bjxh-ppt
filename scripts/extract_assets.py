@@ -31,8 +31,6 @@ import tempfile
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.table import Table  # noqa: F401
-from pptx.util import Emu  # noqa: F401
 
 
 def find_soffice() -> str | None:
