@@ -18,6 +18,10 @@ description: 北京兴华会计师事务所内部 PPT 制作规范 — 基于 20
 **最常用流程 — Markdown 大纲 → 规范的 .pptx：**
 
 ```bash
+# 0. 首次使用：配置模板路径
+cp scripts/config.example.json scripts/config.json
+#    编辑 config.json，填入 template_path（或设置 BJXH_TEMPLATE 环境变量）
+
 # 1. 在 examples/audit_demo.md 风格写自己的大纲
 # 2. 一行命令生成
 python scripts/from_outline.py my_outline.pptx.md my_output.pptx
