@@ -46,6 +46,7 @@ class PageSpec:
     bullets: list[str] = field(default_factory=list)
     note: str = ""
     subtitle: str = ""  # cover subtitle (from > subtitle: directive)
+    image: str = ""  # path to image file (from > image: directive)
     toc_page_numbers: list[str] = field(default_factory=list)
 
     def __repr__(self) -> str:
@@ -185,6 +186,8 @@ def parse_outline(
                 current = replace(current, note=val)
             elif key == "subtitle":
                 current = replace(current, subtitle=val)
+            elif key == "image":
+                current = replace(current, image=val)
             else:
                 print(
                     f"Warning: line {line_number}: unknown directive "

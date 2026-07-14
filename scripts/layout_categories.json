@@ -1,0 +1,13 @@
+{
+  "_note": "Layout categories used by layout_utils.suggest_layout(). Edit this file to change layout selection behavior without touching code.",
+  "structured": ["无图分段-3项", "无图分段-4项", "无图分段-5项"],
+  "text": ["标题页-空白", "2_标题页-空白"],
+  "chart": ["图表-1", "图表-2"],
+  "image_text": ["有图分段式-16", "有图分段式-8"],
+  "data_keywords": [
+    "%", "增长", "下降", "占比", "同比", "环比", "数据", "比例",
+    "亿", "万", "倍", "个百分点", "统计", "趋势",
+    "累计投入", "约", "万元", "亿元", "试点", "覆盖率",
+    "处理", "份", "个", "识别", "节约", "提升"
+  ]
+}
