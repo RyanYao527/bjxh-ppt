@@ -12,6 +12,10 @@ import sys as _sys
 import zipfile as _zip
 from io import BytesIO
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pptx.slide import SlideLayout
 
 from lxml import etree as _et
 from pptx import Presentation

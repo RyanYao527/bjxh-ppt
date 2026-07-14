@@ -11,7 +11,7 @@ import re
 import sys
 from dataclasses import dataclass, field, replace
 
-from layout_utils import suggest_layout
+from layout_utils import suggest_layout, truncate_title
 
 
 # ---- regex patterns -------------------------------------------------------
@@ -140,10 +140,12 @@ def parse_outline(
             chapter_title = m.group(1).strip()
             h2_titles.append(chapter_title)
             if no_chapter_covers:
+                short_title, overflow_note = truncate_title(chapter_title)
                 current = PageSpec(
                     kind="content",
-                    title=chapter_title,
+                    title=short_title,
                     layout=DEFAULT_CONTENT_LAYOUT,
+                    note=overflow_note,
                 )
             else:
                 current = PageSpec(
@@ -156,10 +158,13 @@ def parse_outline(
         m = H3_RE.match(line)
         if m:
             flush()
+            raw_title = m.group(1).strip()
+            short_title, overflow_note = truncate_title(raw_title)
             current = PageSpec(
                 kind="content",
-                title=m.group(1).strip(),
+                title=short_title,
                 layout=DEFAULT_CONTENT_LAYOUT,
+                note=overflow_note,
             )
             continue
 
@@ -197,6 +202,17 @@ def parse_outline(
     flush()
 
     # ---- post-processing: insert TOC ----------------------------------
+    # New template (5.27) TOC only supports 3 chapters.  Auto-disable if
+    # there are more, rather than silently dropping entries.
+    TOC_MAX_CHAPTERS = 3
+    if add_toc and len(h2_titles) > TOC_MAX_CHAPTERS:
+        print(
+            f"Warning: {len(h2_titles)} chapters but TOC layout only supports "
+            f"{TOC_MAX_CHAPTERS}. Disabling TOC. "
+            f"Use a richer TOC layout or add --no-toc to suppress this warning.",
+            file=sys.stderr,
+        )
+        add_toc = False
     if add_toc and h2_titles:
         toc_page_numbers: list[str] = []
         for title in h2_titles:
